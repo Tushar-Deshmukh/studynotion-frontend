@@ -107,6 +107,8 @@ export default function Index() {
     }
   };
 
+  
+
   return (
     <SignUpContainer className="py-4">
       <Container maxWidth="lg">
