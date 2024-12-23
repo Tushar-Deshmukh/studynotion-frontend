@@ -8,6 +8,8 @@ import moment from "moment";
 import { MdModeEditOutline } from "react-icons/md";
 import { RiDeleteBin5Fill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
+import { IoIosTime } from "react-icons/io";
+import { FaCheckCircle } from "react-icons/fa";
 
 export default function Index() {
   const navigate = useNavigate();
@@ -46,11 +48,14 @@ export default function Index() {
         render: (value, row) => {
           return (
             <div className="flex justify-start gap-4">
-              <div>
-                <img src="images/course_img.png" className="w-full h-full" />
+              <div className="w-[25%] h-auto">
+                <img
+                  src="images/course_img.png"
+                  className="w-full h-full object-contain"
+                />
               </div>
 
-              <div>
+              <div className="w-[75%]">
                 <h4 className="font-semibold text-white font-sans text-2xl">
                   {row?.title || ""}
                 </h4>
@@ -62,6 +67,41 @@ export default function Index() {
                   Created:{" "}
                   {moment(row?.createdAt).format("MMMM DD, YYYY | hh:mm A")}
                 </p>
+
+                <div className="mt-4">
+                  {row?.coursetype === "Public" ? (
+                    <Button
+                      variant="contained"
+                      sx={{
+                        padding: "5px 25px",
+                        borderRadius: "20px",
+                        background: "#2C333F",
+                        color:'#E7C009',
+                        "&:hover": {
+                          background: "#2C333F",
+                        },
+                      }}
+                      startIcon={<FaCheckCircle />}
+                    >
+                      Published
+                    </Button>
+                  ) : (
+                    <Button
+                      sx={{
+                        background: "#2C333F",
+                        color: "#F37290",
+                        padding: "5px 25px",
+                        borderRadius: "20px",
+                        "&:hover": {
+                          background: "#2C333F",
+                        },
+                      }}
+                      startIcon={<IoIosTime />}
+                    >
+                      Drafted
+                    </Button>
+                  )}
+                </div>
               </div>
             </div>
           );

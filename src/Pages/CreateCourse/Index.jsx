@@ -19,7 +19,7 @@ const tips = [
 ];
 
 export default function Index() {
-  const [activeStep, setActiveStep] = useState(2);
+  const [activeStep, setActiveStep] = useState(0);
   const [courseId, setCourseId] = useState(null);
 
   const handleNext = () => {
@@ -44,6 +44,7 @@ export default function Index() {
       component: () => (
         <CourseBuilder
           courseId={courseId}
+          setCourseId={setCourseId}
           handleNext={handleNext}
           handlePrevious={handlePrevious}
         />
@@ -64,7 +65,7 @@ export default function Index() {
         </Link>
 
         <Box mt={4}>
-          <CustomeStepper />
+          <CustomeStepper activeStep={activeStep} />
         </Box>
 
         <div className="mt-6">{steps[activeStep].component()}</div>

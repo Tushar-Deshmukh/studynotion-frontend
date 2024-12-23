@@ -1,8 +1,39 @@
 import { Button, Checkbox, FormControlLabel, Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { IoIosArrowBack } from "react-icons/io";
+import axios from "../../axios";
+import { toast } from "react-hot-toast";
+import ApiConfig from "../../config/ApiConfig";
+import { useNavigate } from "react-router-dom";
 
 export default function Publish() {
+  const navigate = useNavigate();
+  const [isPublic, setIsPublic] = useState(false);
+
+  async function updateCourse(coursetype) {
+    const courseId = localStorage.getItem("courseId");
+
+    try {
+      const res = await axios({
+        method: "PUT",
+        url: `${ApiConfig.updateCourse}/${courseId}`,
+        data: {
+          coursetype: coursetype,
+        },
+      });
+
+      if (res?.data?.success) {
+        toast.success(res?.data?.message);
+        navigate("/my-courses");
+        localStorage.removeItem("courseId");
+      }
+    } catch (error) {
+      if (error.response) {
+        toast.error(error.response?.data?.message);
+      }
+    }
+  }
+
   return (
     <div>
       <div className="p-4 bg-[#161D29] border border-[#2C333F] rounded-lg">
@@ -10,7 +41,12 @@ export default function Publish() {
 
         <FormControlLabel
           className="mt-4"
-          control={<Checkbox />}
+          control={
+            <Checkbox
+              checked={isPublic}
+              onChange={(e) => setIsPublic(e.target.checked)}
+            />
+          }
           label={
             <Typography variant="body1" color="text.secondary">
               Make this course public
@@ -44,11 +80,17 @@ export default function Publish() {
                 background: "#161D29",
               },
             }}
+            onClick={() => updateCourse("Draft")}
           >
             Save as a Draft
           </Button>
 
-          <Button variant="contained">Save and Publish</Button>
+          <Button
+            variant="contained"
+            onClick={() => updateCourse(isPublic ? "Public" : "Draft")}
+          >
+            Save and Publish
+          </Button>
         </div>
       </div>
     </div>

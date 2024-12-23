@@ -73,6 +73,12 @@ export default function CourseBuilder({
     }
   }, [courseId]);
 
+  useEffect(() => {
+    if (courseId) {
+      localStorage.setItem("courseId", courseId);
+    }
+  }, [courseId]);
+
   return (
     <div className="p-4 bg-[#2C333F] border rounded-lg border-[#161D29]">
       <Typography variant="h4" color="text.primary">

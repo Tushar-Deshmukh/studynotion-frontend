@@ -1,18 +1,28 @@
 const url = "http://localhost:8080/api";
 
 const ApiConfig = {
+  //auth
   register: `${url}/auth/register`,
   verifyOtp: `${url}/auth/verify-otp`,
   login: `${url}/auth/login`,
   forgotPassword: `${url}/auth/forgot-password`,
-  myCourses: `${url}/my-courses`,
-  categories: `${url}/categories`,
+
+  //upload
   uploadImage: `${url}/upload-image`,
   uploadVideo: `${url}/upload-video`,
+
+  //course
   createCourse: `${url}/create-course`,
+  myCourses: `${url}/my-courses`,
+  updateCourse: `${url}/update-course`,
+  categories: `${url}/categories`,
+
+  //course topic
   createCourseTopic: `${url}/create-course-topic`,
   courseTopics: `${url}/course-topics`,
-  createCourseSubtopic:`${url}/create-course-subtopic`,
+
+  //course sub topic
+  createCourseSubtopic: `${url}/create-course-subtopic`,
 };
 
 export default ApiConfig;
