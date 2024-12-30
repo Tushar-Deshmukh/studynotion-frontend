@@ -59,4 +59,18 @@ export const routes = [
     layout: DashboardLayout,
     component: lazy(() => import("./Pages/CreateCourse/Index")),
   },
+
+  {
+    exact: true,
+    path: "/checkout-course",
+    layout: HomeLayout,
+    component: lazy(() => import("./Pages/CourseCheckout/Index")),
+  },
+
+  {
+    exact: true,
+    path: "/course-details",
+    layout: HomeLayout,
+    component: lazy(() => import("./Pages/CourseDetails/Index")),
+  },
 ];

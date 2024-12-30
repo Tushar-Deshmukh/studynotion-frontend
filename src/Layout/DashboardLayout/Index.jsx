@@ -19,7 +19,7 @@ export default function Index({ children }) {
       <Sidebar openSidebar={openSidebar} closeSidebar={handleSidebarOpen} />
 
       <div className="pl-0 lg:pl-[256px] pt-[78px] content-container">
-        <div className="p-4">{children}</div>
+        <div className="">{children}</div>
       </div>
     </DashboardLayoutContainer>
   );

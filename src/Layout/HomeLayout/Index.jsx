@@ -2,12 +2,15 @@ import React from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 
-export default function Index() {
+export default function Index({ children }) {
   return (
-    <div>
+    <div className="flex flex-col justify-between">
       <Header />
-      
-      <Footer />
+
+      <div className="pt-[77px]">{children}</div>
+      <div>
+        <Footer />
+      </div>
     </div>
   );
 }

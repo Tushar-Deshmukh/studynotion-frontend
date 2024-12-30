@@ -97,7 +97,6 @@ export const lightTheme = createTheme({
           "& .MuiOutlinedInput-notchedOutline": {
             borderWidth: "1px !important",
           },
-         
         },
         notchedOutline: {
           borderColor: "rgba(0, 0, 0, 0.23)", // Default border color

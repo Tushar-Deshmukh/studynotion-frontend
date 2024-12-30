@@ -10,11 +10,43 @@ import { RiDeleteBin5Fill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import { IoIosTime } from "react-icons/io";
 import { FaCheckCircle } from "react-icons/fa";
+import DeleteDialog from "../../components/DeleteDialog";
+import toast from "react-hot-toast";
 
 export default function Index() {
   const navigate = useNavigate();
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [deleteCourseLoading, setDeleteCourseLoading] = useState(false);
+  const [courseId, setCourseId] = useState(null);
+  const [openDeleteCourseDialog, setOpenDeleteCourseDialog] = useState(false);
+
+  const handleOpenDeleteCourseDialog = (id) => {
+    setOpenDeleteCourseDialog(!openDeleteCourseDialog);
+    setCourseId(id);
+  };
+
+  async function deleteCourse() {
+    try {
+      setDeleteCourseLoading(true)
+      const res = await axios({
+        method: "DELETE",
+        url: `${ApiConfig.deleteCourse}/${courseId}`,
+      });
+
+      if (res?.data?.success) {
+        setDeleteCourseLoading(false)
+        toast.success(res?.data?.message);
+        setOpenDeleteCourseDialog(false);
+        getMyCourses();
+      }
+    } catch (error) {
+      setDeleteCourseLoading(false)
+      if (error.response) {
+        toast.error(error.response?.data?.message);
+      }
+    }
+  }
 
   async function getMyCourses() {
     try {
@@ -76,7 +108,7 @@ export default function Index() {
                         padding: "5px 25px",
                         borderRadius: "20px",
                         background: "#2C333F",
-                        color:'#E7C009',
+                        color: "#E7C009",
                         "&:hover": {
                           background: "#2C333F",
                         },
@@ -133,10 +165,12 @@ export default function Index() {
               >
                 <MdModeEditOutline />
               </IconButton>
+
               <IconButton
                 sx={{
                   color: "#AFB2BF",
                 }}
+                onClick={() => handleOpenDeleteCourseDialog(value)}
               >
                 <RiDeleteBin5Fill />
               </IconButton>
@@ -164,6 +198,16 @@ export default function Index() {
       <Box mt={2}>
         <Table data={courses || []} columns={columns || []} loading={loading} />
       </Box>
+
+      {openDeleteCourseDialog && (
+        <DeleteDialog
+          course={true}
+          open={openDeleteCourseDialog}
+          onClose={handleOpenDeleteCourseDialog}
+          deleteCourse={deleteCourse}
+          loading={deleteCourseLoading}
+        />
+      )}
     </div>
   );
 }

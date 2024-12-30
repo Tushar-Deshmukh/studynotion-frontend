@@ -1,14 +1,60 @@
-import { Button, IconButton, TextField, Typography } from "@mui/material";
-import React, { useContext } from "react";
+import {
+  Button,
+  IconButton,
+  List,
+  ListItem,
+  ListItemText,
+  Popover,
+  TextField,
+  Typography,
+} from "@mui/material";
+import React, { useState, useContext, useEffect } from "react";
 import searchicon from "../../assets/search.svg";
 import carticon from "../../assets/cart.svg";
 import { useNavigate } from "react-router-dom";
 import { MdMenuOpen } from "react-icons/md";
 import { AuthContext } from "../../context/AuthContext";
+import axios from "../../axios";
+import ApiConfig from "../../config/ApiConfig";
+import { toast } from "react-hot-toast";
 
 export default function Header({ handleSidebarOpen }) {
   const auth = useContext(AuthContext);
   const navigate = useNavigate();
+  const [categories, setCategories] = useState([]);
+  // State to manage the Popover anchor element
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  // Function to handle opening the Popover
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  // Function to handle closing the Popover
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  // Boolean to determine if the Popover is open
+  const open = Boolean(anchorEl);
+  const id = open ? "simple-popover" : undefined;
+
+  async function getCourseCategories() {
+    try {
+      const res = await axios.get(ApiConfig.categories);
+      if (res?.data?.success) {
+        setCategories(res?.data?.data);
+      }
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response?.data?.message);
+      }
+    }
+  }
+
+  useEffect(() => {
+    getCourseCategories();
+  }, []);
 
   return (
     <div className="bg-coolgray border-b border-[#2C333F] w-full fixed top-0 z-40">
@@ -19,7 +65,14 @@ export default function Header({ handleSidebarOpen }) {
         <div>
           <Button className="!text-text-lightGray">Home</Button>
 
-          <Button className="!text-text-lightGray">Catalog</Button>
+          <Button
+            className="!text-text-lightGray"
+            aria-describedby={id}
+            color="primary"
+            onClick={handleClick}
+          >
+            Catalog
+          </Button>
 
           <Button className="!text-text-lightGray">About Us</Button>
 
@@ -55,6 +108,40 @@ export default function Header({ handleSidebarOpen }) {
           </div>
         </div>
       </nav>
+
+      {/* Popover Component */}
+      <Popover
+        id={id}
+        open={open}
+        anchorEl={anchorEl}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "left",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "left",
+        }}
+      >
+        <List>
+          {categories.length > 0 &&
+            categories.map((category, i) => {
+              return (
+                <ListItem
+                  key={category?._id}
+                  button
+                  onClick={() => {
+                    handleClose();
+                    navigate(`/course-details?id=${category?._id}`);
+                  }}
+                >
+                  <ListItemText primary={category?.name} />
+                </ListItem>
+              );
+            })}
+        </List>
+      </Popover>
     </div>
   );
 }

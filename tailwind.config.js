@@ -11,9 +11,18 @@ export default {
         text:{
           primary:"#000000",
           lightGray:"#AFB2BF",
-        
+          extraGray:'#999DAA',
+          thinGray:'#C5C7D4',
         },
-        coolgray:"#161D29"
+        coolgray:"#161D29",
+        lightWhite:'#DBDDEA',
+        borderGray:'#2C333F',
+        success:'#06D6A0',
+        yellow:'#FFD60A'
+      },
+      fontSize:{
+        14:'14px',
+        16:'16px',
       }
     },
   },
