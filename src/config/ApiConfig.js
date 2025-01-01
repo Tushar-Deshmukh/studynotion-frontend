@@ -20,6 +20,14 @@ const ApiConfig = {
   getAllCoursesByCategory: `${url}/get-all-courses`,
   course:`${url}/course`,
 
+  //cart
+  addToCart:`${url}/add-to-cart`,
+  myCart:`${url}/my-cart`,
+  removeFromCart:`${url}/remove-from-cart`,
+
+  //profile
+  myProfile:`${url}/auth/my-profile`,
+
   //category
   category:`${url}/get-category`,
 

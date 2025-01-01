@@ -1,4 +1,5 @@
 import {
+  Badge,
   Button,
   IconButton,
   List,
@@ -17,11 +18,14 @@ import { AuthContext } from "../../context/AuthContext";
 import axios from "../../axios";
 import ApiConfig from "../../config/ApiConfig";
 import { toast } from "react-hot-toast";
+import { useCart } from "../../context/CartContext";
 
 export default function Header({ handleSidebarOpen }) {
   const auth = useContext(AuthContext);
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
+  const { cartData } = useCart();
+
   // State to manage the Popover anchor element
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -56,6 +60,14 @@ export default function Header({ handleSidebarOpen }) {
     getCourseCategories();
   }, []);
 
+  const handleCartIconClick = () => {
+    if (!auth?.userLoggedIn) {
+      toast.error("Please login to see your cart!");
+      return;
+    }
+    navigate("/my-cart");
+  };
+
   return (
     <div className="bg-coolgray border-b border-[#2C333F] w-full fixed top-0 z-40">
       <nav className="py-4 px-8 flex items-center justify-between">
@@ -84,8 +96,13 @@ export default function Header({ handleSidebarOpen }) {
             <img src={searchicon} />
           </IconButton>
 
-          <IconButton>
-            <img src={carticon} />
+          <IconButton onClick={handleCartIconClick}>
+            <Badge
+              badgeContent={cartData?.length > 0 ? cartData?.length : 0}
+              color="primary"
+            >
+              <img src={carticon} />
+            </Badge>
           </IconButton>
 
           <div>
@@ -100,6 +117,10 @@ export default function Header({ handleSidebarOpen }) {
               </Button>
             )}
           </div>
+
+          <Button variant="outlined" onClick={() => navigate("/signup")}>
+            Sign Up
+          </Button>
 
           <div className="block lg:hidden">
             <IconButton sx={{ color: "white" }} onClick={handleSidebarOpen}>

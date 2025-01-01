@@ -28,20 +28,20 @@ export default function Index() {
 
   async function deleteCourse() {
     try {
-      setDeleteCourseLoading(true)
+      setDeleteCourseLoading(true);
       const res = await axios({
         method: "DELETE",
         url: `${ApiConfig.deleteCourse}/${courseId}`,
       });
 
       if (res?.data?.success) {
-        setDeleteCourseLoading(false)
+        setDeleteCourseLoading(false);
         toast.success(res?.data?.message);
         setOpenDeleteCourseDialog(false);
         getMyCourses();
       }
     } catch (error) {
-      setDeleteCourseLoading(false)
+      setDeleteCourseLoading(false);
       if (error.response) {
         toast.error(error.response?.data?.message);
       }
@@ -183,7 +183,7 @@ export default function Index() {
   );
 
   return (
-    <div>
+    <div className="p-4">
       <Box className="w-full flex justify-between items-center">
         <Typography variant="h4">Courses</Typography>
         <Button

@@ -17,12 +17,16 @@ export default {
         coolgray:"#161D29",
         lightWhite:'#DBDDEA',
         borderGray:'#2C333F',
+        textGray:'#6E727F',
         success:'#06D6A0',
         yellow:'#FFD60A'
       },
       fontSize:{
         14:'14px',
         16:'16px',
+        18:'18px',
+        24:'24px',
+        30:'30px',
       }
     },
   },

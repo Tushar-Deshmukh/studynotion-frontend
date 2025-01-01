@@ -1,5 +1,5 @@
 import { Box, Button, Container, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "../../axios";
 import { toast } from "react-hot-toast";
 import ApiConfig from "../../config/ApiConfig";
@@ -16,6 +16,8 @@ import {
   ListItemText,
 } from "@mui/material";
 import { MdExpandMore } from "react-icons/md";
+import { useCart } from "../../context/CartContext";
+import { AuthContext } from "../../context/AuthContext";
 
 const courseFeatures = [
   {
@@ -50,6 +52,18 @@ export default function Index() {
   const [course, setCourse] = useState({});
   const [sectionsLength, setSectionsLength] = useState(0);
   const [subSectionsLength, setSubSectionsLength] = useState(0);
+  const { addToCart, loading } = useCart();
+  const auth = useContext(AuthContext)
+
+  const handleAddToCartBtnClick = (courseId) => {
+    
+    if(!auth?.userLoggedIn){
+        toast.error('Please Login First')
+        return
+    }
+
+    addToCart(courseId);
+  };
 
   async function getCourseByCourseId() {
     try {
@@ -194,7 +208,12 @@ export default function Index() {
           <div className="p-2">
             <p className="text-3xl">Rs. {course?.price}</p>
             <div className="mt-4 flex flex-col gap-2">
-              <Button variant="contained">Add To Cart</Button>
+              <Button
+                variant="contained"
+                onClick={() => handleAddToCartBtnClick(course?._id)}
+              >
+               {loading ? 'Adding to the cart...' : "Add To Cart"} 
+              </Button>
               <Button
                 variant="contained"
                 sx={{

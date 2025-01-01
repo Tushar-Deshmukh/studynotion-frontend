@@ -8,7 +8,7 @@ import {
   IconButton,
   FormHelperText,
 } from "@mui/material";
-import React, { useState,useContext } from "react";
+import React, { useState, useContext } from "react";
 import { styled } from "@mui/material/styles";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
@@ -81,6 +81,14 @@ export default function Index() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  function handleNavigation(role) {
+    if (role === "Student") {
+      navigate("/my-profile");
+    } else {
+      navigate("/dashboard");
+    }
+  }
+
   const handleSubmit = async (values) => {
     try {
       setLoading(true);
@@ -96,8 +104,8 @@ export default function Index() {
       if (res?.status === 200) {
         setLoading(false);
         toast.success(res?.data?.message);
-        auth.userLogin(true,res?.data?.token)
-        navigate("/dashboard");
+        auth.userLogin(true, res?.data?.token);
+        handleNavigation(res?.data?.user?.role);
       }
     } catch (error) {
       setLoading(false);
@@ -107,14 +115,12 @@ export default function Index() {
     }
   };
 
-  
-
   return (
     <SignUpContainer className="py-4">
       <Container maxWidth="lg">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <Container maxWidth='sm'>
-            <div className="my-8">
+          <Container maxWidth="sm">
+            <div>
               <Typography variant="h4" fontWeight={600}>
                 Welcome Back
               </Typography>
@@ -137,52 +143,6 @@ export default function Index() {
             >
               {({ values, handleChange, handleBlur, errors, touched }) => (
                 <Form>
-                  <div>
-                    <ButtonGroup className="btngroup my-4">
-                      <Button
-                        variant="contained"
-                        onClick={() => setSelectedRole("Student")}
-                        sx={{
-                          background:
-                            selectedRole === "Student"
-                              ? "black"
-                              : "transparent",
-                          color:
-                            selectedRole === "Student" ? "#FFF" : "#999DAA",
-                          "&:hover": {
-                            backgroundColor:
-                              selectedRole === "Student"
-                                ? "black"
-                                : "transparent",
-                          },
-                        }}
-                      >
-                        Student
-                      </Button>
-
-                      <Button
-                        variant="contained"
-                        onClick={() => setSelectedRole("Instructor")}
-                        sx={{
-                          background:
-                            selectedRole === "Instructor"
-                              ? "black"
-                              : "transparent",
-                          color:
-                            selectedRole === "Instructor" ? "#FFF" : "#999DAA",
-                          "&:hover": {
-                            backgroundColor:
-                              selectedRole === "Instructor"
-                                ? "black"
-                                : "transparent",
-                          },
-                        }}
-                      >
-                        Instructor
-                      </Button>
-                    </ButtonGroup>
-                  </div>
-
                   <div className="w-full mt-4 flex flex-col gap-1">
                     <label>
                       Email Address <span className="text-red-500">*</span>

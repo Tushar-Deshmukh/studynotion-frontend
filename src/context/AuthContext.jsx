@@ -1,4 +1,6 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
+import ApiConfig from "../config/ApiConfig";
+import axios from "../axios";
 
 export const AuthContext = createContext();
 
@@ -15,6 +17,26 @@ const checkLogin = () => {
 
 export default function AuthProvider({ children }) {
   const [isLogin, setIsLogin] = useState(checkLogin());
+  const [profile, setProfile] = useState({});
+
+  async function getMyProfile() {
+    try {
+      const res = await axios.get(ApiConfig.myProfile);
+      if (res?.data?.success) {
+        setProfile(res?.data?.data);
+      }
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response?.data?.message);
+      }
+    }
+  }
+
+  useEffect(() => {
+    if (isLogin) {
+      getMyProfile();
+    }
+  }, [isLogin]);
 
   const data = {
     userLoggedIn: isLogin,
@@ -22,7 +44,18 @@ export default function AuthProvider({ children }) {
       setIsLogin(value);
       setSession(token);
     },
+    profile
   };
 
   return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;
+}
+
+export function useAuth() {
+  const context = useContext(AuthContext);
+
+  if (!context) {
+    throw new Error("Auth should be wrapper in a provider");
+  }
+
+  return context;
 }

@@ -62,6 +62,13 @@ export const routes = [
 
   {
     exact: true,
+    path: "/my-cart",
+    layout: DashboardLayout,
+    component: lazy(() => import("./Pages/Cart/Index")),
+  },
+
+  {
+    exact: true,
     path: "/checkout-course",
     layout: HomeLayout,
     component: lazy(() => import("./Pages/CourseCheckout/Index")),
@@ -72,5 +79,12 @@ export const routes = [
     path: "/course-details",
     layout: HomeLayout,
     component: lazy(() => import("./Pages/CourseDetails/Index")),
+  },
+
+  {
+    exact: true,
+    path: "/my-profile",
+    layout: DashboardLayout,
+    component: lazy(() => import("./Pages/Profile/Index")),
   },
 ];

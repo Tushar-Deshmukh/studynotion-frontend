@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import PageLoading from "./components/PageLoading";
 import NotFound from "./components/NotFound";
 import AuthProvider from "./context/AuthContext";
+import CartProvider from "./context/CartContext";
 
 export default function AppRouter() {
   return (
@@ -18,24 +19,26 @@ export default function AppRouter() {
 function RenderRoutes({ data }) {
   return (
     <AuthProvider>
-      <Routes>
-        {data.map((route, i) => {
-          const Component = route.component;
-          const Layout = route.layout || Fragment;
-          return (
-            <Route
-              key={i}
-              path={route.path}
-              element={
-                <Layout>
-                  <Component />
-                </Layout>
-              }
-            />
-          );
-        })}
-        <Route path="*" element={<NotFound />} />{" "}
-      </Routes>
+      <CartProvider>
+        <Routes>
+          {data.map((route, i) => {
+            const Component = route.component;
+            const Layout = route.layout || Fragment;
+            return (
+              <Route
+                key={i}
+                path={route.path}
+                element={
+                  <Layout>
+                    <Component />
+                  </Layout>
+                }
+              />
+            );
+          })}
+          <Route path="*" element={<NotFound />} />{" "}
+        </Routes>
+      </CartProvider>
     </AuthProvider>
   );
 }
