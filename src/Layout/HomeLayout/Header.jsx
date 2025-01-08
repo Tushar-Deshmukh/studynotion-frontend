@@ -14,34 +14,23 @@ import searchicon from "../../assets/search.svg";
 import carticon from "../../assets/cart.svg";
 import { useNavigate } from "react-router-dom";
 import { MdMenuOpen } from "react-icons/md";
-import { AuthContext } from "../../context/AuthContext";
+import { AuthContext, useAuth } from "../../context/AuthContext";
 import axios from "../../axios";
 import ApiConfig from "../../config/ApiConfig";
 import { toast } from "react-hot-toast";
 import { useCart } from "../../context/CartContext";
+import { IoIosArrowDown } from "react-icons/io";
 
 export default function Header({ handleSidebarOpen }) {
   const auth = useContext(AuthContext);
   const navigate = useNavigate();
-  const [categories, setCategories] = useState([]);
   const { cartData } = useCart();
+  const { profile } = useAuth();
+  const defaultProfileImage =
+    "https://media.istockphoto.com/id/1130884625/vector/user-member-vector-icon-for-ui-user-interface-or-profile-face-avatar-app-in-circle-design.jpg?s=612x612&w=0&k=20&c=1ky-gNHiS2iyLsUPQkxAtPBWH1BZt0PKBB1WBtxQJRE=";
 
-  // State to manage the Popover anchor element
-  const [anchorEl, setAnchorEl] = useState(null);
-
-  // Function to handle opening the Popover
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  // Function to handle closing the Popover
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  // Boolean to determine if the Popover is open
-  const open = Boolean(anchorEl);
-  const id = open ? "simple-popover" : undefined;
+  const [categories, setCategories] = useState([]);
+  const [isPopoverOpen, setPopoverOpen] = useState(false);
 
   async function getCourseCategories() {
     try {
@@ -74,21 +63,89 @@ export default function Header({ handleSidebarOpen }) {
         <div>
           <img src="images/Logo.png" alt="logo" />
         </div>
-        <div>
-          <Button className="!text-text-lightGray">Home</Button>
-
+        <div className="flex items-center">
           <Button
-            className="!text-text-lightGray"
-            aria-describedby={id}
-            color="primary"
-            onClick={handleClick}
+            className="!text-lightWhite"
+            sx={{
+              fontSize: "16px",
+            }}
           >
-            Catalog
+            Home
           </Button>
 
-          <Button className="!text-text-lightGray">About Us</Button>
+          <div className="relative">
+            <Button
+              className="!text-lightWhite"
+              color="primary"
+              endIcon={<IoIosArrowDown />}
+              sx={{
+                fontSize: "16px",
+              }}
+              onMouseEnter={() => setPopoverOpen(true)}
+              onMouseLeave={() => setPopoverOpen(false)}
+            >
+              Catalog
+            </Button>
 
-          <Button className="!text-text-lightGray">Contact Us</Button>
+            {/* Popover */}
+            {isPopoverOpen && (
+              <div
+                id="popover-default"
+                role="tooltip"
+                className="absolute z-10 w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-100 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800"
+                style={{
+                  top: "100%",
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                }}
+                onMouseEnter={() => setPopoverOpen(true)}
+                onMouseLeave={() => setPopoverOpen(false)}
+              >
+                <div className="px-3 py-2 bg-gray-100 border-b border-gray-200 rounded-t-lg dark:border-gray-600 dark:bg-gray-700">
+                  <h3 className="font-semibold text-gray-900 dark:text-white">
+                    Available Course Categories
+                  </h3>
+                </div>
+                <div className="py-2">
+                  <List>
+                    {categories.length > 0 &&
+                      categories.map((category, i) => {
+                        return (
+                          <ListItem
+                            key={category?._id}
+                            button
+                            onClick={() => {
+                              setPopoverOpen(false);
+                              navigate(`/course-details?id=${category?._id}`);
+                            }}
+                          >
+                            <ListItemText primary={category?.name} />
+                          </ListItem>
+                        );
+                      })}
+                  </List>
+                </div>
+              </div>
+            )}
+          </div>
+
+          <Button
+            className="!text-lightWhite"
+            sx={{
+              fontSize: "16px",
+            }}
+          >
+            About Us
+          </Button>
+
+          <Button
+            className="!text-lightWhite"
+            sx={{
+              fontSize: "16px",
+            }}
+          >
+            Contact Us
+          </Button>
         </div>
 
         <div className="flex items-center justify-start gap-[10px]">
@@ -109,16 +166,32 @@ export default function Header({ handleSidebarOpen }) {
             {auth?.userLoggedIn ? (
               <img
                 className="w-[30px] h-[30px] rounded-full"
-                src="https://media.istockphoto.com/id/1130884625/vector/user-member-vector-icon-for-ui-user-interface-or-profile-face-avatar-app-in-circle-design.jpg?s=612x612&w=0&k=20&c=1ky-gNHiS2iyLsUPQkxAtPBWH1BZt0PKBB1WBtxQJRE="
+                src={profile?.profileImage || defaultProfileImage}
               />
             ) : (
-              <Button variant="outlined" onClick={() => navigate("/login")}>
+              <Button
+                variant="outlined"
+                onClick={() => navigate("/login")}
+                sx={{
+                  background: "transparent",
+                  border: "1px solid #DBDDEA",
+                  color: "#DBDDEA",
+                }}
+              >
                 Sign In
               </Button>
             )}
           </div>
 
-          <Button variant="outlined" onClick={() => navigate("/signup")}>
+          <Button
+            variant="outlined"
+            onClick={() => navigate("/signup")}
+            sx={{
+              background: "transparent",
+              border: "1px solid #DBDDEA",
+              color: "#DBDDEA",
+            }}
+          >
             Sign Up
           </Button>
 
@@ -129,40 +202,6 @@ export default function Header({ handleSidebarOpen }) {
           </div>
         </div>
       </nav>
-
-      {/* Popover Component */}
-      <Popover
-        id={id}
-        open={open}
-        anchorEl={anchorEl}
-        onClose={handleClose}
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "left",
-        }}
-        transformOrigin={{
-          vertical: "top",
-          horizontal: "left",
-        }}
-      >
-        <List>
-          {categories.length > 0 &&
-            categories.map((category, i) => {
-              return (
-                <ListItem
-                  key={category?._id}
-                  button
-                  onClick={() => {
-                    handleClose();
-                    navigate(`/course-details?id=${category?._id}`);
-                  }}
-                >
-                  <ListItemText primary={category?.name} />
-                </ListItem>
-              );
-            })}
-        </List>
-      </Popover>
     </div>
   );
 }

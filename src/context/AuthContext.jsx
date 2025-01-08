@@ -18,14 +18,18 @@ const checkLogin = () => {
 export default function AuthProvider({ children }) {
   const [isLogin, setIsLogin] = useState(checkLogin());
   const [profile, setProfile] = useState({});
+  const [loading, setLoading] = useState(false);
 
   async function getMyProfile() {
     try {
+      setLoading(true);
       const res = await axios.get(ApiConfig.myProfile);
       if (res?.data?.success) {
+        setLoading(false);
         setProfile(res?.data?.data);
       }
     } catch (error) {
+      setLoading(false);
       if (error.response) {
         console.log(error.response?.data?.message);
       }
@@ -44,7 +48,9 @@ export default function AuthProvider({ children }) {
       setIsLogin(value);
       setSession(token);
     },
-    profile
+    profile,
+    loading,
+    getMyProfile
   };
 
   return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;

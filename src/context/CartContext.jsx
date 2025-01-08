@@ -74,6 +74,28 @@ export default function CartProvider({ children }) {
     }
   }
 
+  async function buyCourse(courseId, amount) {
+    try {
+      const res = await axios({
+        method: "POST",
+        url: ApiConfig.createCheckoutSession,
+        data: {
+          courseId: courseId,
+          amount: amount,
+        },
+      });
+
+      if (res?.data?.success) {
+        const url = res?.data?.url;
+        window.open(url, "_blank");
+      }
+    } catch (error) {
+      if (error.response) {
+        toast.error(error?.response?.data?.message);
+      }
+    }
+  }
+
   useEffect(() => {
     if (userLoggedIn) {
       myCart();
@@ -85,6 +107,7 @@ export default function CartProvider({ children }) {
     loading,
     cartData,
     removeFromCart,
+    buyCourse,
   };
 
   return <CartContext.Provider value={data}>{children}</CartContext.Provider>;

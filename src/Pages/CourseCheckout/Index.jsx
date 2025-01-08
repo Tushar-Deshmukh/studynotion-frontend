@@ -52,18 +52,26 @@ export default function Index() {
   const [course, setCourse] = useState({});
   const [sectionsLength, setSectionsLength] = useState(0);
   const [subSectionsLength, setSubSectionsLength] = useState(0);
-  const { addToCart, loading } = useCart();
-  const auth = useContext(AuthContext)
+  const { addToCart, buyCourse,loading } = useCart();
+  const auth = useContext(AuthContext);
 
   const handleAddToCartBtnClick = (courseId) => {
-    
-    if(!auth?.userLoggedIn){
-        toast.error('Please Login First')
-        return
+    if (!auth?.userLoggedIn) {
+      toast.error("Please Login First");
+      return;
     }
 
     addToCart(courseId);
   };
+
+  const handleBuyNowBtnClick = (courseId,amount) => {
+    if (!auth?.userLoggedIn) {
+      toast.error("Please Login First");
+      return;
+    }
+
+    buyCourse(courseId,amount)
+  }
 
   async function getCourseByCourseId() {
     try {
@@ -212,10 +220,11 @@ export default function Index() {
                 variant="contained"
                 onClick={() => handleAddToCartBtnClick(course?._id)}
               >
-               {loading ? 'Adding to the cart...' : "Add To Cart"} 
+                {loading ? "Adding to the cart..." : "Add To Cart"}
               </Button>
               <Button
                 variant="contained"
+                onClick={() => handleBuyNowBtnClick(course?._id,course?.price)}
                 sx={{
                   background: "#47546A",
                   color: "white",
@@ -225,6 +234,7 @@ export default function Index() {
                   },
                 }}
               >
+
                 Buy Now
               </Button>
             </div>

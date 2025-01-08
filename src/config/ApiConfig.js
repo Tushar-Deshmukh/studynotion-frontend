@@ -18,18 +18,19 @@ const ApiConfig = {
   categories: `${url}/categories`,
   deleteCourse: `${url}/delete-course`,
   getAllCoursesByCategory: `${url}/get-all-courses`,
-  course:`${url}/course`,
+  course: `${url}/course`,
 
   //cart
-  addToCart:`${url}/add-to-cart`,
-  myCart:`${url}/my-cart`,
-  removeFromCart:`${url}/remove-from-cart`,
+  addToCart: `${url}/add-to-cart`,
+  myCart: `${url}/my-cart`,
+  removeFromCart: `${url}/remove-from-cart`,
 
   //profile
-  myProfile:`${url}/auth/my-profile`,
+  myProfile: `${url}/auth/my-profile`,
+  updateProfile: `${url}/auth/update-profile`,
 
   //category
-  category:`${url}/get-category`,
+  category: `${url}/get-category`,
 
   //course topic
   createCourseTopic: `${url}/create-course-topic`,
@@ -37,6 +38,9 @@ const ApiConfig = {
 
   //course sub topic
   createCourseSubtopic: `${url}/create-course-subtopic`,
+
+  //checkout
+  createCheckoutSession:`${url}/create-checkout-session`
 };
 
 export default ApiConfig;

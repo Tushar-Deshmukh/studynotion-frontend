@@ -13,6 +13,20 @@ export const routes = [
 
   {
     exact: true,
+    path: "/success",
+    layout: HomeLayout,
+    component: lazy(() => import("./Pages/PaymentSuccess/Index")),
+  },
+
+  {
+    exact: true,
+    path: "/cancel",
+    layout: HomeLayout,
+    component: lazy(() => import("./Pages/PaymentCancel/Index")),
+  },
+
+  {
+    exact: true,
     path: "/login",
     layout: LoginLayout,
     component: lazy(() => import("./Pages/Login/Index")),

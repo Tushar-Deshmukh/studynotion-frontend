@@ -7,8 +7,6 @@ import { PiGraduationCap } from "react-icons/pi";
 import { RiComputerLine } from "react-icons/ri";
 import { MdOutlineDashboard } from "react-icons/md";
 
-
-
 export const studentMenuItems = [
   { icon: FiUser, label: "My Profile", path: "/my-profile" },
   { icon: LuNotebook, label: "Enrolled Courses", path: "/enrolled-courses" },
