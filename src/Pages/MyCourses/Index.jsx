@@ -61,6 +61,7 @@ export default function Index() {
         setCourses(res?.data?.data);
       }
     } catch (error) {
+      setCourses([]);
       setLoading(false);
       if (error.response) {
         console.log(error.response?.data?.message);
@@ -79,7 +80,8 @@ export default function Index() {
         accessor: null,
         render: (value, row) => {
           return (
-            <div className="flex justify-start gap-4">
+            <div className="flex items-start justify-start gap-4">
+
               <div className="w-[25%] h-auto">
                 <img
                   src="images/course_img.png"

@@ -67,6 +67,7 @@ export default function CourseInformation({handleNext,setCourseId}) {
       image: values.thumbnail,
       tags: values.tags.split(",").map((tag) => tag.trim()),
       requirements: requirements,
+      profession:"Instructor"
     };
     try {
       const res = await axios({

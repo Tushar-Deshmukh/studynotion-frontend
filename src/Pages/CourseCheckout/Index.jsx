@@ -77,12 +77,13 @@ export default function Index() {
     try {
       const res = await axios.get(`${ApiConfig.course}/${courseId}`);
       if (res?.data?.success) {
-        setCourse(res?.data?.data);
+        const coursedata = res?.data?.data;
+        setCourse(coursedata);
 
-        setSectionsLength(res?.data?.data?.topics.length);
+        setSectionsLength(coursedata?.courseContent?.topics.length);
 
-        const subtopics = res?.data?.data?.topics?.reduce((count, topic) => {
-          return count + topic?.subtopics?.length;
+        const subtopics = coursedata?.courseContent?.topics?.reduce((count, topic) => {
+          return count + topic?.subTopics?.length;
         }, 0);
 
         setSubSectionsLength(subtopics);
@@ -146,16 +147,16 @@ export default function Index() {
           <p className="text-3xl">Course content</p>
 
           <div className="text-text-thinGray flex items-center gap-2 mt-1">
-            <p>{sectionsLength} Sections</p>
+            <p>{sectionsLength || 0} Sections</p>
             <ul className="flex items-center gap-8 list-disc pl-8">
-              <li>{subSectionsLength} Subsections</li>
-              <li>{course?.totalDuration} total length</li>
+              <li>{subSectionsLength || 0} Subsections</li>
+              <li>{course?.totalDuration || '00:00:00'} Total Length</li>
             </ul>
           </div>
         </div>
 
         <div className="mt-2 px-6 pb-6">
-          {course?.topics?.map((topic) => (
+          {course?.courseContent?.topics?.map((topic) => (
             <Accordion key={topic._id}>
               <AccordionSummary
                 expandIcon={<MdExpandMore />}
@@ -174,7 +175,7 @@ export default function Index() {
                 <Box className="w-full flex items-center justify-between">
                   <Typography variant="h6">{topic?.name}</Typography>
                   <Typography variant="body2" className="text-yellow">
-                    {topic?.subtopics?.length} lecture(s)
+                    {topic?.subTopics?.length} lecture(s)
                   </Typography>
                 </Box>
               </AccordionSummary>
@@ -191,7 +192,7 @@ export default function Index() {
                     },
                   }}
                 >
-                  {topic.subtopics.map((subtopic) => (
+                  {topic?.subTopics.map((subtopic) => (
                     <ListItem key={subtopic?._id}>
                       <img src="/images/tv.png" />
                       <ListItemText

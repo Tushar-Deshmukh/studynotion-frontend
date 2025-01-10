@@ -6,13 +6,11 @@ import { toast } from "react-hot-toast";
 import ApiConfig from "../../config/ApiConfig";
 import { useNavigate } from "react-router-dom";
 
-export default function Publish() {
+export default function Publish({courseId}) {
   const navigate = useNavigate();
   const [isPublic, setIsPublic] = useState(false);
 
   async function updateCourse(coursetype) {
-    const courseId = localStorage.getItem("courseId");
-
     try {
       const res = await axios({
         method: "PUT",

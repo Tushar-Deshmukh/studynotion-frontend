@@ -44,7 +44,6 @@ export default function Index() {
       component: () => (
         <CourseBuilder
           courseId={courseId}
-          setCourseId={setCourseId}
           handleNext={handleNext}
           handlePrevious={handlePrevious}
         />
@@ -53,12 +52,12 @@ export default function Index() {
     {
       id: 3,
       label: "Publish",
-      component: () => <Publish />,
+      component: () => <Publish courseId={courseId}/>,
     },
   ];
 
   return (
-    <div className="grid grid-cols-12 gap-4">
+    <div className="p-4 grid grid-cols-12 gap-4">
       <div className="col-span-7">
         <Link className="text-text-lightGray flex justify-start gap-2 items-center font-sans">
           <MdArrowBackIos /> Back to Dashboard
