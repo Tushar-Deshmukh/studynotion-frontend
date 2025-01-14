@@ -27,5 +27,5 @@ export const instructorMenuItems = [
 
 export const commonMenuItems = [
   { icon: IoSettingsOutline, label: "Settings", path: "/settings" },
-  { icon: AiOutlineLogout, label: "Logout", path: "/" },
+  // { icon: AiOutlineLogout, label: "Logout", path: "/" },
 ];

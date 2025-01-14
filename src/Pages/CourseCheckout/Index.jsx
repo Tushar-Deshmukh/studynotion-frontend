@@ -52,7 +52,7 @@ export default function Index() {
   const [course, setCourse] = useState({});
   const [sectionsLength, setSectionsLength] = useState(0);
   const [subSectionsLength, setSubSectionsLength] = useState(0);
-  const { addToCart, buyCourse,loading } = useCart();
+  const { addToCart, buyCourse, loading } = useCart();
   const auth = useContext(AuthContext);
 
   const handleAddToCartBtnClick = (courseId) => {
@@ -64,14 +64,14 @@ export default function Index() {
     addToCart(courseId);
   };
 
-  const handleBuyNowBtnClick = (courseId,amount) => {
+  const handleBuyNowBtnClick = (courseId, amount) => {
     if (!auth?.userLoggedIn) {
       toast.error("Please Login First");
       return;
     }
 
-    buyCourse(courseId,amount)
-  }
+    buyCourse(courseId, amount);
+  };
 
   async function getCourseByCourseId() {
     try {
@@ -82,9 +82,12 @@ export default function Index() {
 
         setSectionsLength(coursedata?.courseContent?.topics.length);
 
-        const subtopics = coursedata?.courseContent?.topics?.reduce((count, topic) => {
-          return count + topic?.subTopics?.length;
-        }, 0);
+        const subtopics = coursedata?.courseContent?.topics?.reduce(
+          (count, topic) => {
+            return count + topic?.subTopics?.length;
+          },
+          0
+        );
 
         setSubSectionsLength(subtopics);
       }
@@ -100,6 +103,23 @@ export default function Index() {
       getCourseByCourseId();
     }
   }, [courseId]);
+
+  //utility function to display the duration
+  function formatDuration(duration) {
+    // Split the duration into hours, minutes, and seconds
+    const [hours, minutes, seconds] = duration.split(":").map(Number);
+
+    // Build the formatted string
+    let formattedDuration = "";
+    if (hours > 0) {
+      formattedDuration += `${hours} hr${hours > 1 ? "s" : ""} `;
+    }
+    if (minutes > 0) {
+      formattedDuration += `${minutes} min${minutes > 1 ? "s" : ""}`;
+    }
+
+    return formattedDuration.trim();
+  }
 
   return (
     <div className="grid grid-cols-12">
@@ -150,12 +170,12 @@ export default function Index() {
             <p>{sectionsLength || 0} Sections</p>
             <ul className="flex items-center gap-8 list-disc pl-8">
               <li>{subSectionsLength || 0} Subsections</li>
-              <li>{course?.totalDuration || '00:00:00'} Total Length</li>
+              <li>{course?.totalDuration && formatDuration(course?.totalDuration) || "00:00:00"} Total Length</li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-2 px-6 pb-6">
+        <div className="mt-2 px-6">
           {course?.courseContent?.topics?.map((topic) => (
             <Accordion key={topic._id}>
               <AccordionSummary
@@ -174,9 +194,16 @@ export default function Index() {
               >
                 <Box className="w-full flex items-center justify-between">
                   <Typography variant="h6">{topic?.name}</Typography>
-                  <Typography variant="body2" className="text-yellow">
-                    {topic?.subTopics?.length} lecture(s)
-                  </Typography>
+                  <Box className="flex items-center gap-4">
+                    <Typography variant="body2" className="text-text-extraGray">
+                      {topic?.topicDuration &&
+                        formatDuration(topic?.topicDuration)}
+                    </Typography>
+
+                    <Typography variant="body2" className="text-yellow">
+                      {topic?.subTopics?.length} lecture(s)
+                    </Typography>
+                  </Box>
                 </Box>
               </AccordionSummary>
               <AccordionDetails>
@@ -207,9 +234,21 @@ export default function Index() {
             </Accordion>
           ))}
         </div>
+
+        <div className="mt-2 p-6">
+          <p className="text-24">Author</p>
+          <div className="mt-2 flex items-center gap-4">
+            <img
+              src={course?.createdBy?.profileImage}
+              className="w-20 h-20 object-contain rounded-full"
+            />
+            <p>{`${course?.createdBy?.firstName} ${course?.createdBy?.lastName}`}</p>
+          </div>
+          <p>{course?.createdBy?.about}</p>
+        </div>
       </div>
 
-      <div className="col-span-4 ">
+      <div className="col-span-4">
         <div className="p-4 bg-coolgray">
           <div>
             <img src={course?.image} />
@@ -225,7 +264,7 @@ export default function Index() {
               </Button>
               <Button
                 variant="contained"
-                onClick={() => handleBuyNowBtnClick(course?._id,course?.price)}
+                onClick={() => handleBuyNowBtnClick(course?._id, course?.price)}
                 sx={{
                   background: "#47546A",
                   color: "white",
@@ -235,7 +274,6 @@ export default function Index() {
                   },
                 }}
               >
-
                 Buy Now
               </Button>
             </div>

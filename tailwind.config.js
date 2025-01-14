@@ -19,7 +19,9 @@ export default {
         borderGray:'#2C333F',
         textGray:'#6E727F',
         success:'#06D6A0',
-        yellow:'#FFD60A'
+        yellow:'#FFD60A',
+        tableGray:'#838894',
+        footerBorder:'#424854',
       },
       fontSize:{
         14:'14px',

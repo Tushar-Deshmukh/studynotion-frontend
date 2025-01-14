@@ -19,6 +19,7 @@ const ApiConfig = {
   deleteCourse: `${url}/delete-course`,
   getAllCoursesByCategory: `${url}/get-all-courses`,
   course: `${url}/course`,
+  myEnrolledCourses:`${url}/my-enrolled-courses`,
 
   //cart
   addToCart: `${url}/add-to-cart`,

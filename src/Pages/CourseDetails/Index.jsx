@@ -7,8 +7,6 @@ import { Box, Container, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import CourseCard from "./CourseCard";
 
-
-
 export default function Index() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
@@ -75,12 +73,11 @@ export default function Index() {
         <Container maxWidth="lg">
           <Box className="p-4">
             <Typography variant="h4">Courses to get you started</Typography>
-            <Box mt={2} className="flex items-start flex-wrap gap-4">
+
+            <Box mt={4} className="flex items-start flex-wrap gap-8">
               {courses.length > 0 &&
                 courses?.map((course) => {
-                  return (
-                    <CourseCard key={course?._id} course={course}/>
-                  );
+                  return <CourseCard key={course?._id} course={course} />;
                 })}
             </Box>
           </Box>

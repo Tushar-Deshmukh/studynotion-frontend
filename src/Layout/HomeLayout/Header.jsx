@@ -20,12 +20,14 @@ import ApiConfig from "../../config/ApiConfig";
 import { toast } from "react-hot-toast";
 import { useCart } from "../../context/CartContext";
 import { IoIosArrowDown } from "react-icons/io";
+import { useLocation } from "react-router-dom";
 
 export default function Header({ handleSidebarOpen }) {
   const auth = useContext(AuthContext);
   const navigate = useNavigate();
   const { cartData } = useCart();
-  const { profile } = useAuth();
+  const { profile, userLoggedIn } = useAuth();
+  const location = useLocation();
   const defaultProfileImage =
     "https://media.istockphoto.com/id/1130884625/vector/user-member-vector-icon-for-ui-user-interface-or-profile-face-avatar-app-in-circle-design.jpg?s=612x612&w=0&k=20&c=1ky-gNHiS2iyLsUPQkxAtPBWH1BZt0PKBB1WBtxQJRE=";
 
@@ -56,6 +58,17 @@ export default function Header({ handleSidebarOpen }) {
     }
     navigate("/my-cart");
   };
+
+  const routesToHideSeachAndCartIcon = [
+    "/",
+    "/login",
+    "/signup",
+    "/verify-otp",
+    "/forgot-password",
+  ];
+  const hideCartAndSearchIcon = routesToHideSeachAndCartIcon.includes(
+    location.pathname
+  );
 
   return (
     <div className="bg-coolgray border-b border-[#2C333F] w-full fixed top-0 z-40">
@@ -149,18 +162,24 @@ export default function Header({ handleSidebarOpen }) {
         </div>
 
         <div className="flex items-center justify-start gap-[10px]">
-          <IconButton>
-            <img src={searchicon} />
-          </IconButton>
+          {!hideCartAndSearchIcon && (
+            <>
+              <IconButton>
+                <img src={searchicon} />
+              </IconButton>
 
-          <IconButton onClick={handleCartIconClick}>
-            <Badge
-              badgeContent={cartData?.length > 0 ? cartData?.length : 0}
-              color="primary"
-            >
-              <img src={carticon} />
-            </Badge>
-          </IconButton>
+              {userLoggedIn && (
+                <IconButton onClick={handleCartIconClick}>
+                  <Badge
+                    badgeContent={cartData?.length > 0 ? cartData?.length : 0}
+                    color="primary"
+                  >
+                    <img src={carticon} />
+                  </Badge>
+                </IconButton>
+              )}
+            </>
+          )}
 
           <div>
             {auth?.userLoggedIn ? (

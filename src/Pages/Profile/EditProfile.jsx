@@ -394,9 +394,9 @@ export default function EditProfile({ profile, handleTypeChange }) {
                       <TextField
                         fullWidth
                         variant="outlined"
-                        placeholder="Enter you bio"
                         name="currentPassword"
-                        value={values.currentPassword}
+                        // value={values.currentPassword}
+                        value="******"
                         onChange={handleChange}
                         onBlur={handleBlur}
                         disabled

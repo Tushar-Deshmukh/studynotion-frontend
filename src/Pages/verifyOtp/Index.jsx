@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Container, TextField, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import OtpInput from "react-otp-input";
+import PinInput from "react-pin-input";
 import { MdKeyboardBackspace } from "react-icons/md";
 import { PiClockCounterClockwiseFill } from "react-icons/pi";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -12,8 +12,15 @@ import Spinner from "../../components/Spinner";
 
 const VerifyOtpContainer = styled("div")({
   "& input": {
+    margin:'0',
     textAlign: "center",
   },
+
+  "& .pincode-input-container":{
+    display:'flex',
+    justifyContent:'space-between',
+    alignItems:'center',
+  }
 });
 
 export default function Index() {
@@ -25,8 +32,8 @@ export default function Index() {
   const [loading, setLoading] = useState(false);
 
   async function verifyOtp() {
-    if (otp.length == 0 || otp.length < 6) {
-      toast.error("Please enter 6 digit number");
+    if (otp.length === 0 || otp.length < 6) {
+      toast.error("Please enter a 6-digit number");
       return;
     }
 
@@ -44,7 +51,7 @@ export default function Index() {
       if (res?.data?.success) {
         setLoading(false);
         toast.success(res?.data?.message);
-        navigate("/login")
+        navigate("/login");
       }
     } catch (error) {
       if (error?.response) {
@@ -67,23 +74,27 @@ export default function Index() {
 
           <div className="mt-4">
             <Typography variant="body1" color="text.secondary">
-              A verification code has been sent to you. Enter the code below
+              A verification code has been sent to you. Enter the code below.
             </Typography>
           </div>
 
           <div className="mt-4">
-            <OtpInput
-              value={otp}
-              onChange={setOtp}
-              numInputs={6}
-              inputType="tel"
-              renderInput={(props) => (
-                <TextField variant="outlined" {...props} />
-              )}
+            <PinInput
+              length={6}
+              initialValue=""
+              onChange={(value) => setOtp(value)}
+              type="numeric"
               inputStyle={{
+                border: "1px solid #ccc",
+                borderRadius: "4px",
                 width: "3.5rem",
+                height: "3.5rem",
                 marginRight: "10px",
+                textAlign: "center",
+                fontSize: "1.5rem",
+                margin:'0'
               }}
+              focus
             />
           </div>
 
@@ -91,7 +102,8 @@ export default function Index() {
             <Button
               variant="contained"
               className="w-full"
-              onClick={() => verifyOtp()}
+              onClick={verifyOtp}
+              disabled={loading}
             >
               Verify and Register {loading && <Spinner />}
             </Button>

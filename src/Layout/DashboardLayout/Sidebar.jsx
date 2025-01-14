@@ -1,13 +1,24 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { IoMdClose } from "react-icons/io";
 import {
   studentMenuItems,
   instructorMenuItems,
   commonMenuItems,
 } from "../../constants";
+import { AiOutlineLogout } from "react-icons/ai";
+import { useAuth } from "../../context/AuthContext";
 
 export default function Sidebar({ openSidebar, closeSidebar, user }) {
+  const navigate = useNavigate();
+  const { userLogin } = useAuth();
+
+  const handleLogout = () => {
+    userLogin(false,null);
+    localStorage.clear();
+    navigate("/");
+  };
+
   return (
     <div>
       <aside
@@ -37,6 +48,17 @@ export default function Sidebar({ openSidebar, closeSidebar, user }) {
             {commonMenuItems.map((item, index) => (
               <MenuItem key={index} {...item} />
             ))}
+
+            <li className="hover:bg-[#3D2A01]">
+              <button
+                type="button"
+                className="p-2 w-full flex items-center"
+                onClick={() => handleLogout()}
+              >
+                <AiOutlineLogout size={20} />
+                <span className="ms-3">Logout</span>
+              </button>
+            </li>
           </ul>
         </div>
       </aside>
@@ -53,12 +75,10 @@ const MenuItem = ({ icon: Icon, label, path }) => {
         to={path}
         className={`flex items-center p-2 text-gray-900  dark:text-white hover:bg-[#3D2A01] group
         ${
-          isActive
-            ? "border-l-2 border-[#FFD60A] text-yellow bg-[#3D2A01]"
-            : ""
+          isActive ? "border-l-2 border-[#FFD60A] text-yellow bg-[#3D2A01]" : ""
         }`}
       >
-        <Icon size={20}/>
+        <Icon size={20} />
         <span className="ms-3">{label}</span>
       </Link>
     </li>
