@@ -20,6 +20,7 @@ const ApiConfig = {
   getAllCoursesByCategory: `${url}/get-all-courses`,
   course: `${url}/course`,
   myEnrolledCourses:`${url}/my-enrolled-courses`,
+  updateCourseProgress:`${url}/update-course-progress`,
 
   //cart
   addToCart: `${url}/add-to-cart`,

@@ -125,7 +125,7 @@ export default function Index() {
                   },
                 }}
               >
-                <LinearProgress variant="determinate" value={0} />
+                <LinearProgress variant="determinate" value={value} />
               </Box>
             </div>
 

@@ -2,6 +2,7 @@ import { lazy } from "react";
 import HomeLayout from "./Layout/HomeLayout/Index";
 import LoginLayout from "./Layout/LoginLayout/Index";
 import DashboardLayout from "./Layout/DashboardLayout/Index";
+import VideoLayout from "./Layout/VideoLayout/Index";
 
 export const routes = [
   {
@@ -107,6 +108,13 @@ export const routes = [
     path: "/course-details",
     layout: HomeLayout,
     component: lazy(() => import("./Pages/CourseDetails/Index")),
+  },
+
+  {
+    exact: true,
+    path: "/course-player",
+    layout: VideoLayout,
+    component: lazy(() => import("./Pages/CoursePlayer/Index")),
   },
 
   {
