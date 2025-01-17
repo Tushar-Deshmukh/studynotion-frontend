@@ -57,7 +57,10 @@ export default function Index() {
   async function getMyEnrolledCourses() {
     try {
       setLoading(true);
-      const res = await axios.get(ApiConfig.myEnrolledCourses);
+      const params = {
+        status: selectedStatus,
+      };
+      const res = await axios.get(ApiConfig.myEnrolledCourses, { params });
       if (res?.data?.success) {
         setLoading(false);
         setEnrolledCourses(res?.data?.data);
@@ -73,7 +76,7 @@ export default function Index() {
 
   useEffect(() => {
     getMyEnrolledCourses();
-  }, []);
+  }, [selectedStatus]);
 
   const columns = useMemo(() => [
     {
@@ -81,8 +84,8 @@ export default function Index() {
       accessor: null,
       render: (value, row) => {
         return (
-          <div className="flex justify-start gap-2">
-            <div className="w-40 h-20">
+          <div className="flex justify-start items-center gap-2">
+            <div className="w-20 h-20 flex-shrink-0">
               <img
                 src={row?.courseId?.image}
                 className="w-full h-full object-cover rounded-md"

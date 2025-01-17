@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Rating } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 const CourseCard = ({ key, course }) => {
@@ -31,6 +31,19 @@ const CourseCard = ({ key, course }) => {
         >
           {`${course?.createdBy?.firstName} ${course?.createdBy?.lastName}`}
         </Typography>
+
+        <Box className="my-2 flex items-center gap-2">
+          <p className="text-yellow">{course?.averageRating}</p>
+          <Rating
+            readOnly
+            value={course?.averageRating}
+            sx={{
+              "& .MuiRating-icon": {
+                color: "#faaf00",
+              },
+            }}
+          />
+        </Box>
 
         <Typography variant="h6" className="mt-2">
           Rs. {course?.price}

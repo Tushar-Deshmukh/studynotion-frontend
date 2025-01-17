@@ -72,7 +72,7 @@ export default function Header({ handleSidebarOpen }) {
 
   return (
     <div className="bg-coolgray border-b border-[#2C333F] w-full fixed top-0 z-40">
-      <nav className="py-4 px-8 flex items-center justify-between">
+      <nav className="py-2 px-8 flex items-center justify-between">
         <div>
           <img src="images/Logo.png" alt="logo" />
         </div>
@@ -164,10 +164,6 @@ export default function Header({ handleSidebarOpen }) {
         <div className="flex items-center justify-start gap-[10px]">
           {!hideCartAndSearchIcon && (
             <>
-              <IconButton>
-                <img src={searchicon} />
-              </IconButton>
-
               {userLoggedIn && (
                 <IconButton onClick={handleCartIconClick}>
                   <Badge

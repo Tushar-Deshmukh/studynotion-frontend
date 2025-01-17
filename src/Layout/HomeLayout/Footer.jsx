@@ -69,9 +69,15 @@ export default function Footer() {
             <div>
               <p className="text-text-lightGray text-16 my-3">Company</p>
               <ul className="text-textGray text-14 flex flex-col gap-1">
-                <li>About</li>
-                <li>Careers</li>
-                <li>Affiliates</li>
+                <li className="text-14 text-textGray hover:text-white hover:cursor-pointer">
+                  About
+                </li>
+                <li className="text-14 text-textGray hover:text-white hover:cursor-pointer">
+                  Careers
+                </li>
+                <li className="text-14 text-textGray hover:text-white hover:cursor-pointer">
+                  Affiliates
+                </li>
               </ul>
             </div>
 
@@ -99,16 +105,25 @@ export default function Footer() {
           <div>
             <p className="text-text-lightGray text-16 mb-3">Resources</p>
 
-            <ul className="flex flex-col text-14 text-textGray gap-1">
+            <ul className="flex flex-col  gap-1">
               {resources.map((item) => {
-                return <li key={item}>{item}</li>;
+                return (
+                  <li
+                    key={item}
+                    className="text-14 text-textGray hover:text-white hover:cursor-pointer"
+                  >
+                    {item}
+                  </li>
+                );
               })}
             </ul>
 
             <p className="text-text-lightGray text-16 mt-3 mb-3">Support</p>
 
             <ul className="flex flex-col text-14 text-textGray gap-1">
-              <li>Help Center</li>
+              <li className="text-14 text-textGray hover:text-white hover:cursor-pointer">
+                Help Center
+              </li>
             </ul>
           </div>
 
@@ -116,17 +131,29 @@ export default function Footer() {
             <p className="text-text-lightGray text-16 mb-3">Plans</p>
 
             <ul className="flex flex-col text-14 text-textGray gap-1">
-              <li>Paid memberships</li>
-              <li>For students</li>
-              <li>Business solutions </li>
+              <li className="text-14 text-textGray hover:text-white hover:cursor-pointer">
+                Paid memberships
+              </li>
+              <li className="text-14 text-textGray hover:text-white hover:cursor-pointer">
+                For students
+              </li>
+              <li className="text-14 text-textGray hover:text-white hover:cursor-pointer">
+                Business solutions{" "}
+              </li>
             </ul>
 
             <p className="text-text-lightGray text-16 mt-3 mb-3">Community</p>
 
             <ul className="flex flex-col text-14 text-textGray gap-1">
-              <li>Forums</li>
-              <li>Chapters</li>
-              <li>Events</li>
+              <li className="text-14 text-textGray hover:text-white hover:cursor-pointer">
+                Forums
+              </li>
+              <li className="text-14 text-textGray hover:text-white hover:cursor-pointer">
+                Chapters
+              </li>
+              <li className="text-14 text-textGray hover:text-white hover:cursor-pointer">
+                Events
+              </li>
             </ul>
           </div>
         </div>
@@ -137,7 +164,14 @@ export default function Footer() {
 
             <ul className="flex flex-col text-14 text-textGray gap-1">
               {subjects.map((item, i) => {
-                return <li key={i}>{item}</li>;
+                return (
+                  <li
+                    key={i}
+                    className="text-14 text-textGray hover:text-white hover:cursor-pointer"
+                  >
+                    {item}
+                  </li>
+                );
               })}
             </ul>
           </div>
@@ -147,7 +181,14 @@ export default function Footer() {
 
             <ul className="flex flex-col text-14 text-textGray gap-1">
               {languages.map((item, i) => {
-                return <li key={i}>{item}</li>;
+                return (
+                  <li
+                    key={i}
+                    className="text-14 text-textGray hover:text-white hover:cursor-pointer"
+                  >
+                    {item}
+                  </li>
+                );
               })}
             </ul>
           </div>
@@ -157,7 +198,14 @@ export default function Footer() {
 
             <ul className="flex flex-col text-14 text-textGray gap-1">
               {careerbuiding.map((item, i) => {
-                return <li key={i}>{item}</li>;
+                return (
+                  <li
+                    key={i}
+                    className="text-14 text-textGray hover:text-white hover:cursor-pointer"
+                  >
+                    {item}
+                  </li>
+                );
               })}
             </ul>
           </div>
@@ -182,7 +230,7 @@ export default function Footer() {
         </div>
 
         <div className="text-tableGray">
-          Made with ♥ by Tushar © {new Date().getFullYear()} Studynotion
+          Made with ❤️ by Tushar Deshmukh © {new Date().getFullYear()}
         </div>
       </div>
     </div>

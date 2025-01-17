@@ -6,6 +6,7 @@ import axios from "../../axios";
 import { Box, Container, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import CourseCard from "./CourseCard";
+import DataLoader from "../../components/DataLoader";
 
 export default function Index() {
   const location = useLocation();
@@ -13,9 +14,11 @@ export default function Index() {
   const categoryId = queryParams.get("id");
   const [courses, setCourses] = useState([]);
   const [category, setCategory] = useState({});
+  const [loading, setLoading] = useState(false);
 
   async function getAllCoursesByCategoryId() {
     try {
+      setLoading(true);
       const res = await axios({
         method: "GET",
         url: `${ApiConfig.getAllCoursesByCategory}/${categoryId}`,
@@ -28,6 +31,8 @@ export default function Index() {
       if (error.response) {
         console.log(error.response?.data?.message);
       }
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -69,20 +74,24 @@ export default function Index() {
         </Container>
       </div>
 
-      <Box mt={4}>
-        <Container maxWidth="lg">
-          <Box className="p-4">
-            <Typography variant="h4">Courses to get you started</Typography>
+      {loading ? (
+        <DataLoader />
+      ) : (
+        <Box mt={4}>
+          <Container maxWidth="lg">
+            <Box className="p-4">
+              <Typography variant="h4">Courses to get you started</Typography>
 
-            <Box mt={4} className="flex items-start flex-wrap gap-8">
-              {courses.length > 0 &&
-                courses?.map((course) => {
-                  return <CourseCard key={course?._id} course={course} />;
-                })}
+              <Box mt={4} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+                {courses.length > 0 &&
+                  courses?.map((course) => {
+                    return <CourseCard key={course?._id} course={course} />;
+                  })}
+              </Box>
             </Box>
-          </Box>
-        </Container>
-      </Box>
+          </Container>
+        </Box>
+      )}
     </div>
   );
 }

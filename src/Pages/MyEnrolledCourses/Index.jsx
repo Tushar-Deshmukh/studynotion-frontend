@@ -51,7 +51,7 @@ export default function Index() {
     <div className="p-4">
       <h2 className="text-24">My Learnings</h2>
 
-      <div className="mt-4 flex items-center justify-start gap-4">
+      <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {loading
           ? Array.from({ length: 3 }).map((_, index) => (
               <Card
@@ -93,10 +93,22 @@ export default function Index() {
                       {course?.courseId?.description &&
                         course?.courseId?.description.slice(0, 60) + "..."}
                     </p>
-                    <p className="text-14 my-2 text-white flex items-center gap-2">
-                      <MdOutlineAccessTime />{" "}
-                      {formatDuration(course?.courseId?.totalDuration)}
-                    </p>
+                    <div className="flex justify-between items-center">
+                      <p className="text-14 my-2 text-white flex items-center gap-2">
+                        <MdOutlineAccessTime />{" "}
+                        {formatDuration(course?.courseId?.totalDuration)}
+                      </p>
+
+                      <p
+                        className={`${
+                          course?.status === "Completed"
+                            ? "text-green-500"
+                            : "text-red-500"
+                        }`}
+                      >
+                        {course?.status === "All" ? "In Progress" : course?.status}
+                      </p>
+                    </div>
                   </Box>
                 </Card>
               );

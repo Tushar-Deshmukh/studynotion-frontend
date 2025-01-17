@@ -19,8 +19,9 @@ const ApiConfig = {
   deleteCourse: `${url}/delete-course`,
   getAllCoursesByCategory: `${url}/get-all-courses`,
   course: `${url}/course`,
-  myEnrolledCourses:`${url}/my-enrolled-courses`,
-  updateCourseProgress:`${url}/update-course-progress`,
+  myEnrolledCourses: `${url}/my-enrolled-courses`,
+  updateCourseProgress: `${url}/update-course-progress`,
+  myEnrolledCourse: `${url}/my-enrolled-course`,
 
   //cart
   addToCart: `${url}/add-to-cart`,
@@ -42,7 +43,11 @@ const ApiConfig = {
   createCourseSubtopic: `${url}/create-course-subtopic`,
 
   //checkout
-  createCheckoutSession:`${url}/create-checkout-session`
+  createCheckoutSession: `${url}/create-checkout-session`,
+
+  //rating
+  addRating:`${url}/add-rating`,
+  ratings:`${url}/ratings`,
 };
 
 export default ApiConfig;

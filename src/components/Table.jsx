@@ -42,6 +42,7 @@ export default function Table({ data, columns, loading = false }) {
                 ))}
               </>
             )}
+            {data.length === 0 && !loading && <p className="p-4 h-20 text-center">No Data Found</p>}
           </tbody>
         </table>
       </div>
