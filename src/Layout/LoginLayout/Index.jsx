@@ -5,8 +5,8 @@ export default function Index({children}) {
   return (
     <div>
         <Header/>
-        <div className="pt-[78px]">
-        <div className="p-4">{children}</div>
+        <div className="pt-[65px]">
+        <div className="p-4 h-loginLayout">{children}</div>
       </div>
     </div>
   )

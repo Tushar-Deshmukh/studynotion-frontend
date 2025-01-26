@@ -7,7 +7,7 @@ export default function Index({ children }) {
     <div>
       <Header />
 
-      <div className="pt-[78px]">{children}</div>
+      <div className="pt-[65px]">{children}</div>
 
       <Footer />
     </div>

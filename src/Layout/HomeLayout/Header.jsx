@@ -12,7 +12,7 @@ import {
 import React, { useState, useContext, useEffect } from "react";
 import searchicon from "../../assets/search.svg";
 import carticon from "../../assets/cart.svg";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { MdMenuOpen } from "react-icons/md";
 import { AuthContext, useAuth } from "../../context/AuthContext";
 import axios from "../../axios";
@@ -21,6 +21,8 @@ import { toast } from "react-hot-toast";
 import { useCart } from "../../context/CartContext";
 import { IoIosArrowDown } from "react-icons/io";
 import { useLocation } from "react-router-dom";
+import CategoryPopover from "./CategoryPopover";
+import { MdMenu } from "react-icons/md";
 
 export default function Header({ handleSidebarOpen }) {
   const auth = useContext(AuthContext);
@@ -65,103 +67,78 @@ export default function Header({ handleSidebarOpen }) {
     "/signup",
     "/verify-otp",
     "/forgot-password",
+    "/about",
+    "/contact",
   ];
+
   const hideCartAndSearchIcon = routesToHideSeachAndCartIcon.includes(
     location.pathname
   );
 
+  const currentRoute = location.pathname;
+
   return (
-    <div className="bg-coolgray border-b border-[#2C333F] w-full fixed top-0 z-40">
+    <div className="bg-hotgray border-b border-[#2C333F] w-full fixed top-0 z-40">
       <nav className="py-2 px-8 flex items-center justify-between">
-        <div>
+        <Link to="/" className="flex-shrink-0">
           <img src="images/Logo.png" alt="logo" />
-        </div>
-        <div className="flex items-center">
-          <Button
-            className="!text-lightWhite"
-            sx={{
-              fontSize: "16px",
-            }}
+        </Link>
+
+        <div className="hidden lg:flex items-center gap-4 text-16">
+          <Link
+            to="/"
+            className={`${
+              currentRoute == "/" ? "text-yellow" : "text-lightWhite"
+            }`}
           >
             Home
-          </Button>
+          </Link>
 
           <div className="relative">
-            <Button
-              className="!text-lightWhite"
+            <Link
+              className={`${
+                currentRoute == "/catalog" ? "text-yellow" : "text-lightWhite"
+              } text-16 flex items-center gap-2`}
               color="primary"
-              endIcon={<IoIosArrowDown />}
-              sx={{
-                fontSize: "16px",
-              }}
               onMouseEnter={() => setPopoverOpen(true)}
               onMouseLeave={() => setPopoverOpen(false)}
             >
-              Catalog
-            </Button>
+              Catalog{" "}
+              <span>
+                {" "}
+                <IoIosArrowDown />{" "}
+              </span>
+            </Link>
 
             {/* Popover */}
             {isPopoverOpen && (
-              <div
-                id="popover-default"
-                role="tooltip"
-                className="absolute z-10 w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-100 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800"
-                style={{
-                  top: "100%",
-                  left: "50%",
-                  transform: "translateX(-50%)",
-                }}
-                onMouseEnter={() => setPopoverOpen(true)}
-                onMouseLeave={() => setPopoverOpen(false)}
-              >
-                <div className="px-3 py-2 bg-gray-100 border-b border-gray-200 rounded-t-lg dark:border-gray-600 dark:bg-gray-700">
-                  <h3 className="font-semibold text-gray-900 dark:text-white">
-                    Available Course Categories
-                  </h3>
-                </div>
-                <div className="py-2">
-                  <List>
-                    {categories.length > 0 &&
-                      categories.map((category, i) => {
-                        return (
-                          <ListItem
-                            key={category?._id}
-                            button
-                            onClick={() => {
-                              setPopoverOpen(false);
-                              navigate(`/course-details?id=${category?._id}`);
-                            }}
-                          >
-                            <ListItemText primary={category?.name} />
-                          </ListItem>
-                        );
-                      })}
-                  </List>
-                </div>
-              </div>
+              <CategoryPopover
+                categories={categories}
+                setPopoverOpen={setPopoverOpen}
+              />
             )}
           </div>
 
-          <Button
-            className="!text-lightWhite"
-            sx={{
-              fontSize: "16px",
-            }}
+          <Link
+            to="/about"
+            className={`${
+              currentRoute == "/about" ? "text-yellow" : "text-lightWhite"
+            }`}
           >
             About Us
-          </Button>
+          </Link>
 
-          <Button
-            className="!text-lightWhite"
-            sx={{
-              fontSize: "16px",
-            }}
+          <Link
+            to="/contact"
+            className={`${
+              currentRoute == "/contact" ? "text-yellow" : "text-lightWhite"
+            }`}
           >
             Contact Us
-          </Button>
+          </Link>
         </div>
 
-        <div className="flex items-center justify-start gap-[10px]">
+        <div className="hidden lg:flex items-center justify-start gap-[10px]">
           {!hideCartAndSearchIcon && (
             <>
               {userLoggedIn && (
@@ -209,12 +186,12 @@ export default function Header({ handleSidebarOpen }) {
           >
             Sign Up
           </Button>
+        </div>
 
-          <div className="block lg:hidden">
-            <IconButton sx={{ color: "white" }} onClick={handleSidebarOpen}>
-              <MdMenuOpen size={30} />
-            </IconButton>
-          </div>
+        <div className="block lg:hidden">
+          <IconButton sx={{ color: "white" }} onClick={handleSidebarOpen}>
+            <MdMenu size={30} />
+          </IconButton>
         </div>
       </nav>
     </div>

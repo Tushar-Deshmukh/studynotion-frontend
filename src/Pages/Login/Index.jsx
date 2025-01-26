@@ -116,10 +116,10 @@ export default function Index() {
   };
 
   return (
-    <SignUpContainer className="py-4">
-      <Container maxWidth="lg">
+    <SignUpContainer className="h-full flex justify-center items-center">
+      <Container maxWidth="md">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <Container maxWidth="sm">
+          <div className="max-w-md mx-auto">
             <div>
               <Typography variant="h4" fontWeight={600}>
                 Welcome Back
@@ -215,10 +215,12 @@ export default function Index() {
                 </Form>
               )}
             </Formik>
-          </Container>
+          </div>
 
-          <div className="w-full h-full flex justify-center items-center">
-            <img src="images/login.png" />
+          <div className="w-full h-full hidden md:block">
+            <div className="w-full h-full flex justify-center items-center">
+              <img src="images/login.png" className="max-w-sm" />
+            </div>
           </div>
         </div>
       </Container>

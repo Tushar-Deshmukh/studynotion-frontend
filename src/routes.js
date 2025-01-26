@@ -56,6 +56,20 @@ export const routes = [
 
   {
     exact: true,
+    path: "/contact",
+    layout: HomeLayout,
+    component: lazy(() => import("./Pages/Contact/Index")),
+  },
+
+  {
+    exact: true,
+    path: "/about",
+    layout: HomeLayout,
+    component: lazy(() => import("./Pages/About/Index")),
+  },
+
+  {
+    exact: true,
     path: "/dashboard",
     layout: DashboardLayout,
     component: lazy(() => import("./Pages/Dashboard/Index")),

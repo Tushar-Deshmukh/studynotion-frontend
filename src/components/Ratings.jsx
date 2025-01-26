@@ -24,7 +24,7 @@ export default function Ratings() {
 
   return (
     <div>
-      <h2 className="text-center text-24 mb-4">Reviews From Other Learners</h2>
+      <h2 className="text-center text-30 font-semibold mb-4">Reviews From Other Learners</h2>
       <Marquee>
         {ratings &&
           ratings.length > 0 &&
@@ -44,14 +44,14 @@ export default function Ratings() {
                   </div>
                 </Box>
                 <Box mt={1}>
-                  <p className="text-white">
+                  <p className="text-white h-12">
                     {rating?.review && rating?.review.length > 80
                       ? rating.review.slice(0, 80)
                       : rating?.review}
                   </p>
                 </Box>
 
-                <Box mt={1} className='flex items-center gap-2'>
+                <Box mt={1} className="flex items-center gap-2">
                   <p className="text-yellow">{rating?.rating}</p>
                   <Rating readOnly value={rating?.rating} />
                 </Box>

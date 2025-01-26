@@ -21,7 +21,7 @@ export default function Index({ children }) {
         user={profile}
       />
 
-      <div className="pl-0 lg:pl-[256px] pt-[78px]">
+      <div className="pl-0 lg:pl-[256px] pt-[65px]">
         <div className="">{children}</div>
       </div>
     </div>

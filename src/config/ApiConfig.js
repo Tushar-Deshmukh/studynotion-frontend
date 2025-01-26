@@ -48,6 +48,9 @@ const ApiConfig = {
   //rating
   addRating:`${url}/add-rating`,
   ratings:`${url}/ratings`,
+
+  //contact
+  contactUs:`${url}/contact-us`,
 };
 
 export default ApiConfig;

@@ -65,7 +65,6 @@ export default function Index() {
         <Container maxWidth="lg">
           <Box className="p-4">
             <Typography variant="h4">{category?.name}</Typography>
-            <br />
 
             <Typography variant="body1" color="text.secondary" className="mt-3">
               {category?.description}
@@ -82,7 +81,10 @@ export default function Index() {
             <Box className="p-4">
               <Typography variant="h4">Courses to get you started</Typography>
 
-              <Box mt={4} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+              <Box
+                mt={4}
+                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8"
+              >
                 {courses.length > 0 &&
                   courses?.map((course) => {
                     return <CourseCard key={course?._id} course={course} />;

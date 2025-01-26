@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 
 export default function Index({ children }) {
+  const [openSidebar, setOpenSidebar] = useState(false);
+
+  const handleSidebarOpen = () => {
+    setOpenSidebar(!openSidebar);
+  };
+
   return (
     <div className="flex flex-col justify-between">
       <Header />
 
-      <div className="pt-[77px]">{children}</div>
-      
+      <main className="pt-[65px]">{children}</main>
+
       <div>
         <Footer />
       </div>
