@@ -22,8 +22,9 @@ p {
   animation: l2 1s infinite linear;
 }
 
-/* .rfm-child{
+.rfm-child{
   margin: 0 20px;
-} */
+  max-width: 400px;
+}
 
 @keyframes l2 {to{transform: rotate(1turn)}}
