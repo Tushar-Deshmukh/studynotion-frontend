@@ -4,6 +4,7 @@ import Promotion from "./Promotion";
 import LearningLanguage from "./LearningLanguage";
 import BecomeAnInstructor from "./BecomeAnInstructor";
 import TimeLine from "./TimeLine";
+import UnlockPower from "./UnlockPower";
 
 export default function Index() {
   return (
@@ -14,6 +15,10 @@ export default function Index() {
 
       <section>
         <Promotion />
+      </section>
+
+      <section>
+        <UnlockPower />
       </section>
 
       <section>
