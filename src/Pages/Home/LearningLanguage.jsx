@@ -1,9 +1,12 @@
 import { Button } from "@mui/material";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function LearningLanguage() {
+  const navigate = useNavigate();
+
   return (
-    <div className="p-10 bg-white">
+    <div data-aos="fade-up" className="p-10 bg-white">
       <h2 className="text-36 text-hotgray font-semibold text-center">
         Your swiss knife for{" "}
         <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1FA2FF] via-[#12D8FA] to-[#A6FFCB]">
@@ -25,7 +28,7 @@ export default function LearningLanguage() {
       </div>
 
       <div className="mt-8 flex justify-center">
-            <Button variant='contained'>Learn More</Button>
+            <Button variant='contained'  onClick={() => navigate("/login")}>Learn More</Button>
       </div>
     </div>
   );

@@ -126,8 +126,8 @@ export default function Index() {
     <SignUpContainer>
       <Container maxWidth="lg">
         <div className="py-4 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <div className="w-full sm:max-w-md mx-auto">
 
+          <div data-aos='fade-left' className="w-full sm:max-w-md mx-auto">
             <div className="my-4">
               <Typography variant="h4" fontWeight={600}>
                 Welcome Back
@@ -371,9 +371,9 @@ export default function Index() {
             </Formik>
           </div>
 
-          <div className="w-full h-full hidden md:block">
+          <div data-aos='fade-right' className="w-full h-full hidden md:block">
             <div className="w-full h-full flex justify-center items-center">
-              <img src="images/signup.png" className="max-w-md"/>
+              <img src="images/signup.png" className="max-w-md" />
             </div>
           </div>
         </div>

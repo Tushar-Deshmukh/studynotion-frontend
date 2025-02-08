@@ -70,7 +70,7 @@ export default function Index() {
       }}
     >
       <Grid container spacing={2}>
-        <Grid item xs={12} sm={12} md={6} lg={4}>
+        <Grid  data-aos='fade-left' item xs={12} sm={12} md={6} lg={4}>
           <Box className="p-4 flex flex-col gap-4 bg-[#161D29]">
             <Box className="flex items-start gap-2">
               <img src="/images/chat.png" />
@@ -113,7 +113,7 @@ export default function Index() {
           </Box>
         </Grid>
 
-        <Grid item xs={12} sm={12} md={6} lg={8}>
+        <Grid  data-aos='fade-right' item xs={12} sm={12} md={6} lg={8}>
           <Box className="max-w-2xl p-10 mx-auto border border-[#424854] rounded-md">
             <div>
               <h2 className="text-36 text-white font-semibold">

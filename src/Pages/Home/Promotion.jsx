@@ -2,12 +2,15 @@ import { Button } from "@mui/material";
 import React from "react";
 import { IoArrowForward } from "react-icons/io5";
 import CodeTyping from "./CodeTyping";
+import { useNavigate } from "react-router-dom";
 
 export default function Promotion() {
+  const navigate = useNavigate();
   return (
     <div className="p-10 bg-coolgray">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="p-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 overflow-hidden">
+
+        <div data-aos="fade-right" className="p-12">
           <h2 className="text-36 text-white font-semibold">
             Unlock your{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1FA2FF] via-[#12D8FA] to-[#A6FFCB]">
@@ -23,7 +26,11 @@ export default function Promotion() {
           </p>
 
           <div className="mt-8 flex justify-start items-center gap-6">
-            <Button variant="contained" endIcon={<IoArrowForward />}>
+            <Button
+              variant="contained"
+              endIcon={<IoArrowForward />}
+              onClick={() => navigate("/login")}
+            >
               Try it Yourself
             </Button>
 
@@ -40,13 +47,14 @@ export default function Promotion() {
                   boxShadow: "inset 0px -1px 0px 0px #FFF",
                 },
               }}
+              onClick={() => navigate("/login")}
             >
               Learn More
             </Button>
           </div>
         </div>
 
-        <div className="p-12 relative">
+        <div data-aos="fade-left" className="p-12 relative">
           <div
             className="absolute"
             style={{
@@ -69,7 +77,7 @@ export default function Promotion() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="p-12 relative">
+        <div data-aos="flip-left" className="p-12 relative">
           <div
             className="absolute"
             style={{
@@ -90,7 +98,7 @@ export default function Promotion() {
           <CodeTyping />
         </div>
 
-        <div className="p-12">
+        <div data-aos="flip-right" className="p-12">
           <h2 className="text-36 text-white font-semibold">
             Start{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1FA2FF] via-[#12D8FA] to-[#A6FFCB]">
@@ -104,7 +112,7 @@ export default function Promotion() {
           </p>
 
           <div className="mt-8 flex justify-start items-center gap-6">
-            <Button variant="contained" endIcon={<IoArrowForward />}>
+            <Button variant="contained" endIcon={<IoArrowForward />} onClick={() => navigate("/login")}>
               Try it Yourself
             </Button>
 
@@ -121,6 +129,7 @@ export default function Promotion() {
                   boxShadow: "inset 0px -1px 0px 0px #FFF",
                 },
               }}
+              onClick={() => navigate("/login")}
             >
               Learn More
             </Button>

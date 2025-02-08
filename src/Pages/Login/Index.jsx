@@ -119,7 +119,7 @@ export default function Index() {
     <SignUpContainer className="h-full flex justify-center items-center">
       <Container maxWidth="md">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <div className="max-w-md mx-auto">
+          <div data-aos='fade-left' className="max-w-md mx-auto">
             <div>
               <Typography variant="h4" fontWeight={600}>
                 Welcome Back
@@ -217,7 +217,7 @@ export default function Index() {
             </Formik>
           </div>
 
-          <div className="w-full h-full hidden md:block">
+          <div data-aos='fade-right' className="w-full h-full hidden md:block">
             <div className="w-full h-full flex justify-center items-center">
               <img src="images/login.png" className="max-w-sm" />
             </div>

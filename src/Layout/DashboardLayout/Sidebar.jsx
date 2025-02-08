@@ -23,7 +23,7 @@ export default function Sidebar({ openSidebar, closeSidebar, user }) {
     <div>
       <aside
         id="default-sidebar"
-        className={`fixed top-[65px] left-0 z-40 w-64 h-screen transition-transform ${
+        className={`fixed top-[54px] left-0 z-40 w-64 h-screen transition-transform ${
           openSidebar ? "translate-x-0" : "-translate-x-full"
         } lg:translate-x-0`}
         aria-label="Sidebar"

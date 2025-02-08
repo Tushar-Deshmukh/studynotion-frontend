@@ -1,12 +1,15 @@
 import React from "react";
 import { Button } from "@mui/material";
 import { IoArrowForward } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 
 export default function HeroSection() {
+  const navigate = useNavigate();
+
   return (
     <div className="p-10 flex flex-col  justify-center items-center gap-8 bg-coolgray">
       {/* Instructor content */}
-      <div className="max-w-2xl flex flex-col justify-center items-center gap-8">
+      <div data-aos="fade-up" className="max-w-2xl flex flex-col justify-center items-center gap-8">
         <div>
           <Button
             variant="contained"
@@ -23,6 +26,7 @@ export default function HeroSection() {
                 boxShadow: "inset 0px -1px 0px 0px #FFF",
               },
             }}
+            onClick={() => navigate("/signup")}
           >
             Become an Instructor
           </Button>
@@ -45,7 +49,9 @@ export default function HeroSection() {
         </div>
 
         <div className="flex justify-center items-center gap-4">
-          <Button variant="contained">Learn More</Button>
+          <Button variant="contained" onClick={() => navigate("/login")}>
+            Learn More
+          </Button>
 
           <Button
             variant="contained"
@@ -60,6 +66,7 @@ export default function HeroSection() {
                 boxShadow: "inset 0px -1px 0px 0px #FFF",
               },
             }}
+            onClick={() => navigate("/login")}
           >
             Book a Demo
           </Button>
@@ -68,6 +75,7 @@ export default function HeroSection() {
 
       {/* video */}
       <div
+        data-aos="zoom-in-up"
         className="w-full max-w-[900px]"
         style={{
           boxShadow: "20px 20px #fff",

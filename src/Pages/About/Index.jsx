@@ -4,7 +4,8 @@ import React from "react";
 export default function Index() {
   return (
     <div className="">
-      <div className="relative mb-20 pb-60 text-center bg-coolgray flex justify-center">
+
+      <div data-aos="fade-up" className="relative mb-20 pb-60 text-center bg-coolgray flex justify-center">
         <div className="max-w-50 p-10">
           <h2 className="text-24 font-semibold text-white">
             Driving Innovation in Online Education for a <br />
@@ -30,7 +31,7 @@ export default function Index() {
         </div>
       </div>
 
-      <div className="px-28 my-10">
+      <div data-aos="fade-up" className="px-28 my-10">
         <p className="text-36 text-center text-text-lightGray">
           "We are passionate about revolutionizing the way we learn. Our
           innovative platform{" "}
@@ -49,7 +50,7 @@ export default function Index() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-8 p-10">
-        <div className="p-6">
+        <div data-aos='fade-left' className="p-6">
           <h2 className="text-36 font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#833AB4] via-[#FD1D1D] to-[#FCB045]">
             Our Founding Story{" "}
           </h2>
@@ -71,13 +72,14 @@ export default function Index() {
           </p>
         </div>
 
-        <div className="p-6">
+        <div  data-aos='fade-right' className="p-6">
           <img src="/images/founding_story.png" />
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-8 p-10">
-        <div className="p-6">
+
+        <div  data-aos='fade-left' className="p-6">
           <h2 className="text-36 font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#E65C00] to-[#F9D423]">
             Our Vision
           </h2>
@@ -92,7 +94,7 @@ export default function Index() {
           </p>
         </div>
 
-        <div className="p-6">
+        <div  data-aos='fade-right' className="p-6">
           <h2 className="text-36 font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#1FA2FF] to-[#A6FFCB]">
             Our Mission
           </h2>
@@ -108,7 +110,7 @@ export default function Index() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-center gap-4 p-10 bg-coolgray border border-borderGray">
+      <div  data-aos='fade-up' className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-center gap-4 p-10 bg-coolgray border border-borderGray">
         <div className="p-4 text-center">
           <h2 className="text-30 text-white">5K</h2>
           <p className="text-tableGray">Active Students</p>
@@ -130,7 +132,7 @@ export default function Index() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 grid-rows-2 p-10">
+      <div  data-aos='fade-up' className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 grid-rows-2 p-10">
         {/* First row */}
         <div className="col-span-2 p-4">
           <h2 className="text-36 text-white font-semibold">

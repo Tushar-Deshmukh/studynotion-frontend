@@ -168,6 +168,7 @@ export default function Header({ handleSidebarOpen }) {
                   background: "transparent",
                   border: "1px solid #DBDDEA",
                   color: "#DBDDEA",
+                  padding:'5px 20px',
                 }}
               >
                 Sign In
@@ -182,6 +183,7 @@ export default function Header({ handleSidebarOpen }) {
               background: "transparent",
               border: "1px solid #DBDDEA",
               color: "#DBDDEA",
+              padding:'5px 20px',
             }}
           >
             Sign Up

@@ -16,7 +16,7 @@ export default function UnlockPower() {
 
       <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 w-full sm:w-[80%] mx-auto">
        
-        <div className="p-4 bg-white shadow-[12px_12px_0_0_#FFD60A]">
+        <div data-aos="flip-up" className="p-4 bg-white shadow-[12px_12px_0_0_#FFD60A]">
           <h6 className="text-coolgray text-24 font-semibold">Learn HTML</h6>
           <p className="text-textGray mt-2">
             This course covers the basic concepts of HTML including creating and
@@ -36,7 +36,7 @@ export default function UnlockPower() {
           </div>
         </div>
 
-        <div className="p-4 bg-coolgray">
+        <div data-aos="flip-up" className="p-4 bg-coolgray">
           <h6 className="text-white text-24 font-semibold">Learn CSS</h6>
           <p className="text-textGray mt-2">
             This course explores advanced topics in HTML5 and CSS3, including
@@ -56,7 +56,7 @@ export default function UnlockPower() {
           </div>
         </div>
 
-        <div className="p-4 bg-coolgray">
+        <div data-aos="flip-up" className="p-4 bg-coolgray">
           <h6 className="text-white text-24 font-semibold">
             Responsive Web design
           </h6>

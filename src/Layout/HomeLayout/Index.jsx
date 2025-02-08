@@ -13,7 +13,7 @@ export default function Index({ children }) {
     <div className="flex flex-col justify-between">
       <Header />
 
-      <main className="pt-[65px]">{children}</main>
+      <main className="pt-[54px]">{children}</main>
 
       <div>
         <Footer />

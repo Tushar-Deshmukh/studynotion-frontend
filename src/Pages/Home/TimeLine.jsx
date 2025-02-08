@@ -1,11 +1,14 @@
 import { Button } from "@mui/material";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function TimeLine() {
+  const navigate = useNavigate();
   return (
     <div className="p-10 bg-[#F9F9F9]">
-      <div className="flex justify-between items-center flex-wrap">
-        <div className="max-w-lg">
+      <div className="flex justify-between items-center flex-wrap overflow-hidden">
+
+        <div data-aos="fade-right" className="max-w-lg">
           <h2 className="text-hotgray text-36 font-semibold">
             Get the skills you need for a{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1FA2FF] via-[#12D8FA] to-[#A6FFCB]">
@@ -14,19 +17,20 @@ export default function TimeLine() {
           </h2>
         </div>
 
-        <div className="max-w-lg">
+        <div data-aos="fade-left" className="max-w-lg">
           <p className="text-tableGray mb-8">
             The modern StudyNotion is the dictates its own terms. Today, to be a
             competitive specialist requires more than professional skills.
           </p>
 
-          <Button variant="contained">Learn More</Button>
+          <Button variant="contained"  onClick={() => navigate("/login")}>Learn More</Button>
         </div>
+        
       </div>
 
       <div className="my-12 flex justify-between items-center">
         {/* timeline */}
-        <div>
+        <div data-aos="fade-up">
           <div className="flex gap-x-3">
             <div className="relative last:after:hidden after:absolute after:top-[4.5rem] after:bottom-[-0.5rem] after:start-[1.875rem] after:w-px after:-translate-x-[0.5px] after:border-l after:border-dashed after:border-gray-200 dark:after:border-neutral-700">
               <div className="w-14 h-14 flex justify-center items-center rounded-full bg-white">
@@ -86,7 +90,7 @@ export default function TimeLine() {
           </div>
         </div>
 
-        <div className="relative">
+        <div data-aos="fade-down" className="relative">
           <img src="/images/working-girl.png" />
           <div className="absolute bottom-[-20px] left-1/2 transform -translate-x-1/2  flex justify-between items-center p-2 bg-[#014A32]">
             <div className="flex items-center gap-8 p-4">
