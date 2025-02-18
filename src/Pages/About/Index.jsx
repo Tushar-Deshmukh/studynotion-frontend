@@ -5,7 +5,8 @@ export default function Index() {
   return (
     <div className="">
 
-      <div data-aos="fade-up" className="relative mb-20 pb-60 text-center bg-coolgray flex justify-center">
+      <div data-aos="fade-up" className="text-center bg-coolgray flex flex-col justify-center items-center">
+
         <div className="max-w-50 p-10">
           <h2 className="text-24 font-semibold text-white">
             Driving Innovation in Online Education for a <br />
@@ -22,17 +23,18 @@ export default function Index() {
           </p>
         </div>
 
-        <div className="absolute px-10 bottom-[-50px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-center">
           <img src="/images/about1.png" />
 
           <img src="/images/about2.png" />
 
           <img src="/images/about3.png" />
         </div>
+
       </div>
 
-      <div data-aos="fade-up" className="px-28 my-10">
-        <p className="text-36 text-center text-text-lightGray">
+      <div data-aos="fade-up" className="px-8 md:px-28 my-4 md:my-10">
+        <p className="text-30 md:text-36 text-center text-text-lightGray">
           "We are passionate about revolutionizing the way we learn. Our
           innovative platform{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1FA2FF] via-[#12D8FA] to-[#A6FFCB]">
@@ -49,7 +51,7 @@ export default function Index() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-8 p-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-8 p-10 overflow-hidden">
         <div data-aos='fade-left' className="p-6">
           <h2 className="text-36 font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#833AB4] via-[#FD1D1D] to-[#FCB045]">
             Our Founding Story{" "}
@@ -77,7 +79,7 @@ export default function Index() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-8 p-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-8 p-10 overflow-hidden">
 
         <div  data-aos='fade-left' className="p-6">
           <h2 className="text-36 font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#E65C00] to-[#F9D423]">

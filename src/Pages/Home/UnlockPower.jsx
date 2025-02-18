@@ -2,7 +2,7 @@ import React from "react";
 
 export default function UnlockPower() {
   return (
-    <div className="p-10 bg-[#F9F9F9]">
+    <div className="p-5 md:p-10 bg-[#F9F9F9]">
       <h2 className="text-36 text-hotgray font-semibold text-center">
         Unlock the{" "}
         <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1FA2FF] via-[#12D8FA] to-[#A6FFCB]">

@@ -5,9 +5,8 @@ import { useNavigate } from "react-router-dom";
 export default function TimeLine() {
   const navigate = useNavigate();
   return (
-    <div className="p-10 bg-[#F9F9F9]">
+    <div className="p-5 md:p-10 bg-[#F9F9F9]">
       <div className="flex justify-between items-center flex-wrap overflow-hidden">
-
         <div data-aos="fade-right" className="max-w-lg">
           <h2 className="text-hotgray text-36 font-semibold">
             Get the skills you need for a{" "}
@@ -23,12 +22,13 @@ export default function TimeLine() {
             competitive specialist requires more than professional skills.
           </p>
 
-          <Button variant="contained"  onClick={() => navigate("/login")}>Learn More</Button>
+          <Button variant="contained" onClick={() => navigate("/login")}>
+            Learn More
+          </Button>
         </div>
-        
       </div>
 
-      <div className="my-12 flex justify-between items-center">
+      <div className="my-12 flex flex-col md:flex-row justify-between items-center">
         {/* timeline */}
         <div data-aos="fade-up">
           <div className="flex gap-x-3">
@@ -92,24 +92,24 @@ export default function TimeLine() {
 
         <div data-aos="fade-down" className="relative">
           <img src="/images/working-girl.png" />
-          <div className="absolute bottom-[-20px] left-1/2 transform -translate-x-1/2  flex justify-between items-center p-2 bg-[#014A32]">
-            <div className="flex items-center gap-8 p-4">
-              <h2 className="text-36 text-white">10</h2>
-              <p className="text-[#05A77B]">
+          <div className="absolute bottom-[-20px] left-1/2 transform -translate-x-1/2  flex flex-col md:flex-row justify-between items-center p-2 bg-[#014A32]">
+            <div className="flex items-center gap-8 p-2 md:p-4">
+              <h2 className="text-20 md:text-36 text-white">10</h2>
+              <p className="text-12 md:text-18 text-[#05A77B]">
                 YEARS
                 <br />
                 EXPERIENCES
               </p>
             </div>
 
-            <div className="border border-[#037957] h-20"></div>
+            <div className="border border-[#037957] w-full  h-0 md:h-20"></div>
 
-            <div className="flex items-center gap-8 p-4">
-              <h2 className="text-36 text-white">10</h2>
-              <p className="text-[#05A77B]">
-                YEARS
+            <div className="flex items-center gap-8 p-2 md:p-4">
+              <h2 className="text-20 md:text-36 text-white">250</h2>
+              <p className="text-12 md:text-18 text-[#05A77B]">
+                TYPES OF
                 <br />
-                EXPERIENCES
+                COURSES
               </p>
             </div>
           </div>

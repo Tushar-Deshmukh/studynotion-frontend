@@ -7,10 +7,10 @@ import { useNavigate } from "react-router-dom";
 export default function Promotion() {
   const navigate = useNavigate();
   return (
-    <div className="p-10 bg-coolgray">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 overflow-hidden">
+    <div className="p-5 md:p-10 bg-coolgray">
 
-        <div data-aos="fade-right" className="p-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 overflow-hidden">
+        <div data-aos="fade-right" className="p-0 md:p-12">
           <h2 className="text-36 text-white font-semibold">
             Unlock your{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1FA2FF] via-[#12D8FA] to-[#A6FFCB]">
@@ -54,7 +54,7 @@ export default function Promotion() {
           </div>
         </div>
 
-        <div data-aos="fade-left" className="p-12 relative">
+        <div data-aos="fade-left" className="p-0 md:p-12 relative">
           <div
             className="absolute"
             style={{
@@ -76,8 +76,9 @@ export default function Promotion() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div data-aos="flip-left" className="p-12 relative">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 overflow-hidden">
+
+        <div data-aos="fade-right" className="p-0 md:p-12 relative order-2 md:order-1">
           <div
             className="absolute"
             style={{
@@ -98,7 +99,7 @@ export default function Promotion() {
           <CodeTyping />
         </div>
 
-        <div data-aos="flip-right" className="p-12">
+        <div data-aos="fade-left" className="p-0 md:p-12 order-1 md:order-2">
           <h2 className="text-36 text-white font-semibold">
             Start{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1FA2FF] via-[#12D8FA] to-[#A6FFCB]">

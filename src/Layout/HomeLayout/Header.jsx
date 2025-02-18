@@ -2,12 +2,6 @@ import {
   Badge,
   Button,
   IconButton,
-  List,
-  ListItem,
-  ListItemText,
-  Popover,
-  TextField,
-  Typography,
 } from "@mui/material";
 import React, { useState, useContext, useEffect } from "react";
 import searchicon from "../../assets/search.svg";
@@ -77,9 +71,18 @@ export default function Header({ handleSidebarOpen }) {
 
   const currentRoute = location.pathname;
 
+  const handleAuthBtnClick = () => {
+    if (profile?.role === "Student") {
+      navigate("/my-profile");
+    } else {
+      navigate("/dashboard");
+    }
+  };
+
   return (
     <div className="bg-hotgray border-b border-[#2C333F] w-full fixed top-0 z-40">
-      <nav className="py-2 px-8 flex items-center justify-between">
+      <nav className="py-2 px-4 md:px-8 flex items-center justify-between">
+
         <Link to="/" className="flex-shrink-0">
           <img src="images/Logo.png" alt="logo" />
         </Link>
@@ -168,7 +171,7 @@ export default function Header({ handleSidebarOpen }) {
                   background: "transparent",
                   border: "1px solid #DBDDEA",
                   color: "#DBDDEA",
-                  padding:'5px 20px',
+                  padding: "5px 20px",
                 }}
               >
                 Sign In
@@ -176,23 +179,40 @@ export default function Header({ handleSidebarOpen }) {
             )}
           </div>
 
-          <Button
-            variant="outlined"
-            onClick={() => navigate("/signup")}
-            sx={{
-              background: "transparent",
-              border: "1px solid #DBDDEA",
-              color: "#DBDDEA",
-              padding:'5px 20px',
-            }}
-          >
-            Sign Up
-          </Button>
+          <div>
+            {auth?.userLoggedIn ? (
+              <Button
+                variant="outlined"
+                onClick={handleAuthBtnClick}
+                sx={{
+                  background: "transparent",
+                  border: "1px solid #DBDDEA",
+                  color: "#DBDDEA",
+                  padding: "5px 20px",
+                }}
+              >
+                Dashboard
+              </Button>
+            ) : (
+              <Button
+                variant="outlined"
+                onClick={() => navigate("/signup")}
+                sx={{
+                  background: "transparent",
+                  border: "1px solid #DBDDEA",
+                  color: "#DBDDEA",
+                  padding: "5px 20px",
+                }}
+              >
+                Sign Up
+              </Button>
+            )}
+          </div>
         </div>
 
         <div className="block lg:hidden">
-          <IconButton sx={{ color: "white" }} onClick={handleSidebarOpen}>
-            <MdMenu size={30} />
+          <IconButton sx={{ color: "white",padding:0 }} onClick={handleSidebarOpen}>
+            <MdMenu size={27} />
           </IconButton>
         </div>
       </nav>

@@ -16,6 +16,7 @@ export default function Index({ children }) {
       <Header handleSidebarOpen={() => handleSidebarOpen()} />
 
       <Sidebar
+        isDashboard={true}
         openSidebar={openSidebar}
         closeSidebar={handleSidebarOpen}
         user={profile}

@@ -6,7 +6,7 @@ export default function LearningLanguage() {
   const navigate = useNavigate();
 
   return (
-    <div data-aos="fade-up" className="p-10 bg-white">
+    <div data-aos="fade-up" className="p-5 md:p-10 bg-white">
       <h2 className="text-36 text-hotgray font-semibold text-center">
         Your swiss knife for{" "}
         <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1FA2FF] via-[#12D8FA] to-[#A6FFCB]">

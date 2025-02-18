@@ -7,7 +7,7 @@ export default function HeroSection() {
   const navigate = useNavigate();
 
   return (
-    <div className="p-10 flex flex-col  justify-center items-center gap-8 bg-coolgray">
+    <div className="p-5 md:p-10 flex flex-col  justify-center items-center gap-8 bg-coolgray">
       {/* Instructor content */}
       <div data-aos="fade-up" className="max-w-2xl flex flex-col justify-center items-center gap-8">
         <div>

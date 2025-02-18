@@ -68,7 +68,7 @@ const company = ["About", "Careers", "Affiliates"];
 
 export default function Footer() {
   return (
-    <div className="p-6 bg-coolgray border-t border-footerBorder">
+    <footer className="p-6 bg-coolgray border-t border-footerBorder">
       <div className="grid gird-cols-1 md:grid-cols-2 gap-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 p-4 md:grid-cols-3 gap-4 md:border-r md:border-[#2C333F]">
           <div>
@@ -144,7 +144,7 @@ export default function Footer() {
         </div>
 
       </div>
-    </div>
+    </footer>
   );
 }
 

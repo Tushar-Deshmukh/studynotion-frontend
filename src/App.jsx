@@ -12,7 +12,7 @@ AOS.init({
   useClassNames: false,
   offset: 200,
   delay: 0,
-  duration: 1500,
+  duration: 1000,
   easing: "ease",
   once: false,
   anchorPlacement: "top-bottom",
@@ -20,7 +20,6 @@ AOS.init({
 
 const App = () => {
   const { isDarkMode, toggleTheme } = useContext(ThemeContext);
-
 
   return (
     <div>

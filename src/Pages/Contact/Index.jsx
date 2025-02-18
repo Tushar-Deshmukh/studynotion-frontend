@@ -61,7 +61,7 @@ export default function Index() {
 
   return (
     <Box
-      className="p-10"
+      className="p-5 md:p-10"
       sx={{
         "& .rfm-child": {
           margin: "0 20px",
@@ -114,7 +114,7 @@ export default function Index() {
         </Grid>
 
         <Grid  data-aos='fade-right' item xs={12} sm={12} md={6} lg={8}>
-          <Box className="max-w-2xl p-10 mx-auto border border-[#424854] rounded-md">
+          <Box className="max-w-2xl p-5 m:p-10 mx-auto border border-[#424854] rounded-md">
             <div>
               <h2 className="text-36 text-white font-semibold">
                 Got a Idea? We’ve got the skills.

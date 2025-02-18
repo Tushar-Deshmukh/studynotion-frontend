@@ -7,8 +7,8 @@ import { useNavigate } from "react-router-dom";
 export default function BecomeAnInstructor() {
   const navigate = useNavigate();
   return (
-    <div className="p-10 bg-hotgray">
-      <div className="flex fle-col md:flex-row justify-between items-center gap-8 overflow-hidden">
+    <div className="p-5 md:p-10 bg-hotgray">
+      <div className="flex flex-col md:flex-row justify-between items-center gap-8 overflow-hidden">
         <div data-aos="fade-right" className="p-5">
           <img src="/images/instructor.png" />
         </div>
